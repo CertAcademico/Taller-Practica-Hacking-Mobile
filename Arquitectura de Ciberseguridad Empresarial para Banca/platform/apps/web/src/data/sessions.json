@@ -1,0 +1,396 @@
+{
+  "sessions": [
+    {
+      "id": "s1",
+      "number": 1,
+      "date": "2026-05-28",
+      "dateLabel": "28 Mayo",
+      "title": "Ecosistema de Amenazas Cibernéticas y Cibercrimen",
+      "shortTitle": "Amenazas & Cibercrimen",
+      "rectora": "¿Cómo opera el adversario que hoy ataca la banca colombiana?",
+      "color": "#E53E3E",
+      "colorLight": "#FED7D7",
+      "icon": "ShieldAlert",
+      "status": "active",
+      "expertConference": null,
+      "pitch": {
+        "headline": "El Campo de Batalla Convergente",
+        "subheadline": "Amenazas, Cibercrimen y la Anatomía del Ataque Bancario",
+        "openingHook": "El panorama de amenazas para 2026 ya no permite ver el fraude y el ciberataque como silos separados. Estamos ante una convergencia de amenazas donde el mismo actor puede ejecutar un ransomware a las 2 AM, completar un fraude de ingeniería social a las 10 AM y vender las credenciales en un marketplace de la Dark Web antes del mediodía.",
+        "keyCases": [
+          { "entity": "JPMorgan Chase", "year": 2014, "fact": "76M hogares expuestos por un servidor sin 2FA. Hoy invierte USD 600M/año en ciberseguridad.", "source": "U.S. Senate PSI, 2015 | Bloomberg, 2023" },
+          { "entity": "Citigroup", "year": 2011, "fact": "BOLA en portal online: 360,000 cuentas comprometidas modificando un número en la URL.", "source": "Krebs on Security, 2011 | OWASP API Top 10, 2023" },
+          { "entity": "Blind Eagle (Colombia)", "year": 2024, "fact": "APT-C-36 activo desde 2018: spear-phishing con IA +60%, targets banca + gobierno + energía CO.", "source": "CERT Académico RedCiber, 2024" }
+        ],
+        "keyStats": [
+          { "value": "USD 9.5T", "label": "Costo cibercrimen global 2024", "source": "Cybersecurity Ventures" },
+          { "value": "+40%", "label": "Ataques a financiero LATAM 2023–24", "source": "ESET" },
+          { "value": "36%", "label": "Brechas inician con phishing", "source": "Verizon DBIR 2024" },
+          { "value": "71%", "label": "Vulnerabilidades APIs tipo BOLA", "source": "OWASP 2023" }
+        ],
+        "reflectionQuestion": "En su organización, ¿cuántas personas con autoridad de decisión podrían responder hoy a un incidente de ransomware a medianoche? ¿Y si el atacante ya lleva 3 semanas dentro de la red?",
+        "references": [
+          "Verizon. (2024). Data Breach Investigations Report 2024.",
+          "Mandiant / Google Cloud. (2024). M-Trends Report 2024.",
+          "World Economic Forum. (2024). Global Cybersecurity Outlook 2024.",
+          "CERT Académico RedCiber. (2024). Análisis Técnico: Blind Eagle APT-C-36.",
+          "Ortiz, E. (2024). Geometría del Cibercrimen. RedCiber.",
+          "OWASP. (2023). API Security Top 10 2023.",
+          "U.S. Senate PSI. (2015). Report on JPMorgan Chase Data Breach.",
+          "Bloomberg Intelligence. (2023). JPMorgan Chase Cybersecurity Investment.",
+          "Krebs on Security. (2011). Citigroup Hack Exposed 360,000 Accounts.",
+          "Cybersecurity Ventures. (2024). Cybercrime Report 2024.",
+          "ESET Research. (2024). Threat Report LATAM H2 2024.",
+          "MITRE Corporation. (2024). ATT&CK Framework v14.",
+          "ISC2. (2024). Cybersecurity Workforce Study 2024.",
+          "Gobierno de Colombia. (2026). Decreto 0368 de 2026 – Open Finance Obligatorio."
+        ]
+      },
+      "blocks": [
+        {
+          "id": "s1-b1", "start": "08:00", "end": "08:10", "duration": 10,
+          "title": "Apertura y Presentación del Programa", "type": "opening", "icon": "Presentation", "tool": null,
+          "description": "Proyectar mapa de 4 sesiones. Presentar metodología y acuerdo de clase. Estadísticas de impacto.",
+          "keyActions": ["Proyectar slide con mapa de 4 sesiones (fechas, temas, pregunta rectora)", "Regla de oro: espacio seguro para compartir incidentes reales", "Mostrar: USD 9.5T / +40% LATAM / 3.5M vacantes"],
+          "speakerNote": "No empezar con tecnología – empezar con el impacto en negocio. El cibercrimen supera el PIB de Alemania y Japón combinados."
+        },
+        {
+          "id": "s1-b2", "start": "08:10", "end": "08:55", "duration": 45,
+          "title": "Presentación Docente + Panorama de Amenazas", "type": "lecture", "icon": "BookOpen", "tool": null,
+          "description": "Presentación personal, casos JPMorgan/Citi, amenazas dominantes 2025–26, Colombia específico, Kill Chain.",
+          "keyActions": ["[8:10–8:20] Presentación personal: trayectoria ASIIF / CERT / RedCiber + 2-3 anécdotas reales", "[8:20–8:35] Casos: JPMorgan 76M hogares, Citigroup BOLA, deepfake USD 25.6M Hong Kong", "[8:35–8:45] Colombia: Blind Eagle + phishing IA +60% + Decreto 0368", "[8:45–8:55] Kill Chain 7 fases + vectores primarios 2024 (Verizon DBIR)"],
+          "speakerNote": "Pregunta activadora al grupo: ¿Cuántos han vivido o gestionado un incidente en los últimos 2 años? Observar proporción."
+        },
+        {
+          "id": "s1-b3", "start": "08:55", "end": "09:25", "duration": 30,
+          "title": "Actividad 1 – Padlet: Muro de Presentación", "type": "activity", "icon": "Layout",
+          "tool": { "name": "Padlet", "url": "https://padlet.com", "setup": "Crear muro tipo 'Wall' – fondo azul tecnológico. Título: '¿Quién defiende la banca colombiana? Cohort 2026'. Habilitar reacciones y comentarios.", "fields": ["Nombre | Cargo | Organización", "Sector: Banca / Fintech / Aseguradora / Consultoría / Otro", "Mi mayor reto de ciberseguridad hoy (1 oración específica)", "Una palabra que define mi relación actual con el riesgo cibernético", "Un incidente que me quita el sueño (opcional – confidencial)"], "timeline": [{"time": "8:55–9:03", "action": "Participantes crean sus tarjetas (8 min)"}, {"time": "9:03–9:18", "action": "Docente recorre muro en pantalla, conecta perfiles (15 min)"}, {"time": "9:18–9:25", "action": "Agrupar por sector/rol – amenaza común vs. diferenciadores (7 min)"}] },
+          "description": "Presentación formal del grupo usando muro colaborativo. El Padlet queda abierto todo el programa.",
+          "keyActions": ["Proyectar QR + URL al inicio", "Dar 8 minutos estrictos para crear tarjetas", "Recorrer muro comentando las respuestas más específicas", "Cierre: 'Este muro es la foto del ecosistema. Al finalizar S4 vuelven y ven si cambió algo'"],
+          "speakerNote": "Identificar participantes con experiencia en incidentes reales – son aliados valiosos para las actividades del bloque siguiente."
+        },
+        {
+          "id": "s1-b4", "start": "09:25", "end": "09:40", "duration": 15,
+          "title": "DESCANSO", "type": "break", "icon": "Coffee", "tool": null,
+          "description": "Descanso.",
+          "keyActions": ["Revisar Padlet completo durante el descanso"],
+          "speakerNote": "Anotar los 2-3 perfiles con mayor experiencia en incidentes para involucrarlos activamente."
+        },
+        {
+          "id": "s1-b5", "start": "09:40", "end": "10:10", "duration": 30,
+          "title": "Actividad 2 – Miro: Kill Chain Grupal", "type": "activity", "icon": "GitBranch",
+          "tool": { "name": "Miro", "url": "https://miro.com", "setup": "Tablero con 3 secciones, plantilla Kill Chain de 7 fases en cada una. Post-its de TTPs pre-cargados.", "groups": [{"name": "Grupo A", "sector": "Banca tradicional", "scenario": "Atacante envía correo al área de tesorería simulando ser el CFO solicitando transferencia urgente de COP 800M. Pasa el filtro antispam.", "source": "Inspirado en casos BEC documentados BankInfo Security, 2024"}, {"name": "Grupo B", "sector": "Fintech + Digital", "scenario": "Desarrollador externo de Open Finance sube credenciales de API a GitHub público. Bot las detecta en 4 min. 3h después hay tráfico anómalo desde Europa del Este hacia la API de saldos.", "source": "GitGuardian State of Secrets Sprawl 2024 / CERT Académico"}, {"name": "Grupo C", "sector": "Aseguradoras + Otros", "scenario": "Empleado de back office abre PDF adjunto de 'DIAN'. Se instala RAT. 31 días en la red exfiltrando políticas de seguridad y credenciales. MTTD: 31 días.", "source": "M-Trends 2024 (MTTD global: 10 días; casos LATAM superan 30 días)"}] },
+          "description": "Grupos mapean escenarios de ataque en plantilla Kill Chain. Ubican acciones del atacante, herramientas y puntos de detección posible.",
+          "keyActions": ["Dividir en 3 grupos por sector según Padlet", "Asignar escenario a cada grupo", "8 minutos de trabajo en Miro", "Cada grupo presenta su cadena en 2 minutos", "Docente destaca: en qué fase ocurrió el punto de no retorno"],
+          "speakerNote": "El debriefing es clave: ¿dónde podría haberse detectado ANTES? Esto conecta directamente con el bloque MITRE que sigue."
+        },
+        {
+          "id": "s1-b6", "start": "10:10", "end": "10:30", "duration": 20,
+          "title": "MITRE ATT&CK + Open Finance Colombia", "type": "lecture", "icon": "Target",
+          "tool": { "name": "MITRE ATT&CK Navigator", "url": "https://attack.mitre.org", "setup": "Abrir navigator.attack.mitre.org. Tener precargado el layer de Blind Eagle con técnicas resaltadas." },
+          "description": "Demostración en vivo del Navigator. Técnicas de Blind Eagle. Open Finance Decreto 0368: nueva superficie de ataque.",
+          "keyActions": ["Navegar en vivo: attack.mitre.org/groups/G0090", "Resaltar T1566.001 (Spearphishing), T1055 (Process Injection), T1082 (System Info)", "Conectar con Decreto 0368: APIs financieras + BOLA + mTLS + OAuth 2.1", "Pregunta al grupo: '¿Alguno ya tiene roadmap de Open Finance? ¿Han evaluado la superficie de ataque?'"],
+          "speakerNote": "La regulación define el mínimo. La seguridad real está en lo que hacen por encima del mínimo."
+        },
+        {
+          "id": "s1-b7", "start": "10:30", "end": "11:30", "duration": 60,
+          "title": "Desarrollo Autónomo – Caso Banco Nacional del Sur", "type": "autonomous", "icon": "FileSearch",
+          "tool": { "name": "MITRE ATT&CK Navigator", "url": "https://attack.mitre.org", "setup": "Tener PDF del caso disponible en carpeta compartida. Link de ATT&CK proyectado en pantalla." },
+          "description": "Análisis individual del caso Blind Eagle anonimizado. Entrega escrita 1-2 páginas.",
+          "keyActions": ["Compartir PDF del caso por carpeta digital o QR", "Docente disponible para consultas, circula entre participantes", "Aviso a los 40 min: 'Quedan 20 minutos – priorizando preguntas 3 y 4'"],
+          "speakerNote": "Observar qué preguntas generan más consultas – eso indica los gaps conceptuales reales del grupo.",
+          "caseStudy": {
+            "title": "Incidente en Banco Nacional del Sur",
+            "narrative": "El 14 de marzo de 2025, el SOC del Banco Nacional del Sur detectó tráfico inusual desde un equipo del área de banca hipotecaria hacia un servidor externo en Ecuador. La investigación reveló que el equipo fue comprometido 38 días antes a través de spear-phishing simulando una actualización del sistema de bienestar corporativo. El payload instaló QuasarRAT. Durante 38 días: exfiltración de 47,000 registros de clientes, políticas de seguridad, credenciales de sistemas legacy y esquema de red. MTTD: 38 días. MTTR: 11 días adicionales. Impacto total: COP 4,200M + costos de notificación SFC.",
+            "questions": [
+              "Mapee las técnicas identificadas en la narrativa usando MITRE ATT&CK. Liste al menos 4 técnicas con su código (Txxxx).",
+              "¿En cuál fase de la Kill Chain existió la mayor ventana de oportunidad para detectar el ataque? Justifique con evidencia del caso.",
+              "Liste 5 controles concretos que habrían reducido el MTTD de 38 días a menos de 72 horas.",
+              "Como CISO, ¿cómo presentaría este incidente a la Junta Directiva? Redacte las 3 oraciones de apertura de esa presentación."
+            ]
+          }
+        },
+        {
+          "id": "s1-b8", "start": "11:30", "end": "12:00", "duration": 30,
+          "title": "Cierre – Lecturas + Mentimeter Exit Poll", "type": "closing", "icon": "CheckCircle",
+          "tool": { "name": "Mentimeter", "url": "https://www.mentimeter.com", "setup": "Crear presentación con 2 slides: (1) Escala 1-10 'Preparación actual de su organización' y (2) Escala 1-10 'Preparación proyectada en 6 meses'.", "questions": [{"type": "scale", "text": "Antes de hoy: ¿qué tan preparada está su organización para detectar un ataque como el caso estudiado? (1=nada, 10=completamente)"}, {"type": "scale", "text": "¿Qué tan preparada estará en 6 meses si implementan lo aprendido hoy? (1=igual, 10=transformada)"}] },
+          "description": "Revisión oral de lecturas previas. Exit poll Mentimeter. Asignación lecturas S2.",
+          "keyActions": ["[11:30–11:45] Preguntas orales sobre lecturas: DBIR 2024, WEF Cybersecurity Outlook, Blind Eagle", "[11:45–11:55] Mentimeter: proyectar brecha percibida entre preparación actual y futura", "[11:55–12:00] Compartir carpeta lecturas S2. Anunciar experto S2."],
+          "speakerNote": "La brecha entre las dos escalas del Mentimeter es el dato más valioso: muestra si la clase generó motivación de cambio."
+        }
+      ],
+      "readings": {
+        "assigned": [
+          { "title": "DBIR 2024 – Executive Summary + Financial Services", "author": "Verizon", "url": "https://www.verizon.com/business/resources/reports/dbir/", "pages": "10 páginas" },
+          { "title": "Global Cybersecurity Outlook 2024 (páginas 1–20)", "author": "WEF", "url": "https://www.weforum.org", "pages": "20 páginas" },
+          { "title": "Threat Report LATAM H2 2024 – Financial Sector", "author": "ESET Research", "url": "https://www.eset.com", "pages": "Sección Colombia" },
+          { "title": "Geometría del Cibercrimen", "author": "Ortiz, E. (2024)", "url": "https://www.redciber.org", "pages": "Artículo completo" }
+        ],
+        "toAssign": [
+          { "title": "Guidance on AI for AML/CFT – Capítulos 1 y 3", "author": "FATF (2023)", "url": "https://www.fatf-gafi.org", "pages": "Caps. 1 y 3" },
+          { "title": "Finance worker pays out $25M after deepfake CFO videoconference", "author": "Bloomberg Technology (Feb 2024)", "url": "https://www.bloomberg.com", "pages": "Artículo" },
+          { "title": "State of the API Security Report Q1 2024 – Executive Summary", "author": "Salt Security (2024)", "url": "https://salt.security", "pages": "Executive Summary" },
+          { "title": "X-Force Threat Intelligence Index 2024 – AI and Threat Actors", "author": "IBM Security (2024)", "url": "https://www.ibm.com/reports/threat-intelligence", "pages": "Sección IA" }
+        ]
+      }
+    },
+    {
+      "id": "s2",
+      "number": 2,
+      "date": "2026-06-03",
+      "dateLabel": "03 Junio",
+      "title": "IA, Computación Cuántica y Superficies de Ataque",
+      "shortTitle": "IA & Cuántica",
+      "rectora": "¿Qué tecnologías están redefiniendo el campo de batalla cibernético?",
+      "color": "#805AD5",
+      "colorLight": "#E9D8FD",
+      "icon": "Cpu",
+      "status": "upcoming",
+      "expertConference": {
+        "slot": "9:00–9:30",
+        "profileDesc": "Especialista en IA aplicada a detección de fraude bancario. O: Threat Intelligence Analyst (CrowdStrike / IBM X-Force / Mandiant) con foco LATAM.",
+        "format": "Videoconferencia Teams/Zoom o presencial",
+        "guidingQuestions": [
+          "¿Cuál es el caso más sofisticado de uso de IA por actores maliciosos que has documentado en banca LATAM?",
+          "¿Cuándo deberían preocuparse realmente los bancos colombianos por la computación cuántica en sus sistemas actuales?",
+          "¿Qué consejo le darías a un CISO de banco colombiano mediano con presupuesto limitado para adoptar IA defensiva?"
+        ],
+        "secondRound": "11:25–11:45 – Segunda ronda via Slido (preguntas anónimas en tiempo real)"
+      },
+      "pitch": {
+        "headline": "La Carrera Armamentista Digital",
+        "subheadline": "IA Agéntica, Deepfakes y el Reloj Cuántico",
+        "openingHook": "2026 es el año de la IA Agéntica. Hemos pasado de pilotos de prueba a productividad autónoma: sistemas que no solo detectan amenazas, sino que las contienen, las investigan y actualizan sus modelos de defensa sin intervención humana.",
+        "keyCases": [
+          { "entity": "JPMorgan Chase", "year": 2024, "fact": "45M transacciones diarias con ML. Modelos COIN + fraud detection con reducción dramática de falsos positivos.", "source": "JPMorgan Annual Report 2024" },
+          { "entity": "Mastercard", "year": 2024, "fact": "Decision Intelligence: 143B transacciones/año. -50% fraude para bancos emisores en piloto.", "source": "Mastercard Technology Blog 2024" },
+          { "entity": "BBVA", "year": 2024, "fact": "UEBA implementado: -30-50% falsos positivos en AML vs. reglas estáticas.", "source": "BBVA Research 2024" },
+          { "entity": "Empresa en Hong Kong", "year": 2024, "fact": "USD 25.6M perdidos en videoconferencia con deepfake en tiempo real del CFO y colegas.", "source": "Bloomberg Technology, Feb 2024" }
+        ],
+        "keyStats": [
+          { "value": "+85%", "label": "Ataques a APIs financieras 2022–24", "source": "Salt Security 2024" },
+          { "value": "2030–35", "label": "Horizonte Q-Day estimado", "source": "IBM Research / Google Quantum AI" },
+          { "value": "USD 25.6M", "label": "Pérdida deepfake CFO Hong Kong 2024", "source": "Bloomberg, Feb 2024" },
+          { "value": "50%", "label": "Reducción fraude IA Mastercard", "source": "Mastercard Tech Blog 2024" }
+        ],
+        "reflectionQuestion": "Si hoy un 'colega' les llama por video para autorizar una transferencia urgente de $500M de pesos, ¿qué protocolo de verificación tienen? ¿Lo tienen documentado? ¿Lo han practicado?",
+        "references": [
+          "JPMorgan Chase. (2024). Annual Report 2024 – Technology & Innovation Section.",
+          "Mastercard. (2024). Decision Intelligence – AI Fraud Detection Results.",
+          "BBVA Research. (2024). AI Applications in AML and Fraud Detection.",
+          "Bloomberg Technology. (2024, Feb 4). Finance worker pays out $25M after deepfake CFO videoconference.",
+          "FATF. (2023). Guidance on the Use of AI in AML/CFT.",
+          "NIST. (2024, Aug). FIPS 203, 204, 205 – Post-Quantum Cryptography Standards.",
+          "IBM Research. (2024). Quantum Computing Roadmap 2024–2033.",
+          "Google Quantum AI. (2024). Willow Chip: Quantum Error Correction Milestone.",
+          "Salt Security. (2024). State of the API Security Report Q1 2024.",
+          "SANS Institute. (2024). Security Operations Center Survey 2024.",
+          "Gartner. (2024). Emerging Risks Monitor 2024 – Generative AI Threats.",
+          "CrowdStrike. (2024). Global Threat Report 2024.",
+          "GitGuardian. (2024). State of Secrets Sprawl 2024."
+        ]
+      },
+      "blocks": [
+        { "id": "s2-b1", "start": "08:00", "end": "08:15", "duration": 15, "title": "Apertura – Mentimeter: Word Cloud IA", "type": "activity", "icon": "MessageSquare", "tool": { "name": "Mentimeter", "url": "https://www.mentimeter.com", "setup": "Slide 1: Word cloud – '¿Qué palabras asocias con IA en ciberseguridad bancaria?'. Slide 2: Ranking – 'Ordena estas amenazas IA de mayor a menor urgencia'. Opciones: deepfakes, malware polimórfico, fraude de voz, envenenamiento de datos ML, adversarial ML." }, "description": "Encuadre conceptual participativo. Word cloud colectivo como mapa mental del grupo.", "keyActions": ["Proyectar word cloud en tiempo real", "Analizar tensiones: términos positivos vs. negativos", "Usar slide 2 de ranking para enmarcar el orden de la clase"], "speakerNote": "El word cloud colectivo ES el campo de tensión que vamos a explorar hoy – úsalo como gancho narrativo." },
+        { "id": "s2-b2", "start": "08:15", "end": "08:25", "duration": 10, "title": "Verificación Lecturas – Kahoot!", "type": "activity", "icon": "Zap", "tool": { "name": "Kahoot!", "url": "https://kahoot.it", "setup": "10 preguntas, 30 seg/pregunta. Preparar con anticipación.", "questions": ["¿Cuánto perdió la empresa de Hong Kong por deepfake en 2024? → USD 25.6M", "¿Qué estándares PQC publicó el NIST en agosto 2024? → FIPS 203/204/205", "¿Qué significa HNDL en el contexto cuántico? → Harvest Now, Decrypt Later", "¿Qué plataforma usa JPMorgan para 45M transacciones/día? → COIN + modelos ML propios", "¿Cuánto crecieron ataques a APIs financieras 2022–24? → +85%", "¿Cuál es el MTTD de madurez según SANS SOC 2024? → < 1 hora", "¿Qué reducción de fraude reportó Mastercard con IA? → 50%", "¿Horizonte estimado para Q-Day? → 2030–2035", "¿Qué significa UEBA? → User Entity Behavior Analytics", "¿Vulnerabilidad #1 en APIs según OWASP 2023? → BOLA"] }, "description": "Quiz competitivo de 10 preguntas sobre lecturas asignadas.", "keyActions": ["Publicar top 3 del ranking", "Usar puntajes como diagnóstico del nivel del grupo"], "speakerNote": "Si más del 30% falla una pregunta específica, dedicar 2 min extra a ese concepto antes de continuar." },
+        { "id": "s2-b3", "start": "08:25", "end": "09:00", "duration": 35, "title": "Bloque Magistral: IA Defensiva y Ofensiva en Banca", "type": "lecture", "icon": "Brain", "tool": null, "description": "Casos JPMorgan, Mastercard, BBVA. Deepfake BVC. GANs malware polimórfico. Open Finance APIs.", "keyActions": ["[8:25–8:37] IA defensiva: JPMorgan / Mastercard / BBVA / XDR / KPIs MTTD + MTTR", "[8:37–8:49] IA ofensiva: GANs malware, voice cloning BVC, caso Bloomberg USD 25.6M, concept drift", "[8:49–9:00] APIs Open Finance: +85% ataques, BOLA, controles mTLS + OAuth 2.1 + PKCE"], "speakerNote": "Reproducir máx 1 min del artículo Bloomberg como ancla emocional antes del bloque ofensivo." },
+        { "id": "s2-b4", "start": "09:00", "end": "09:30", "duration": 30, "title": "Conferencia Experto #1", "type": "expert", "icon": "UserCheck", "tool": { "name": "Slido (Q&A moderado)", "url": "https://www.slido.com", "setup": "Activar modo Q&A anónimo durante la conferencia. Proyectar las preguntas del público en pantalla secundaria para el docente." }, "description": "20 min presentación + 10 min Q&A. Ver perfil recomendado en campo expertConference.", "keyActions": ["Presentar al experto con su caso más notable", "Moderar Q&A con Slido", "Capturar las 2-3 ideas más citables para referenciar en el cierre"], "speakerNote": "Anunciar segunda ronda con el experto a las 11:25 para mantener atención." },
+        { "id": "s2-b5", "start": "09:30", "end": "09:45", "duration": 15, "title": "DESCANSO", "type": "break", "icon": "Coffee", "tool": null, "description": "Descanso.", "keyActions": [], "speakerNote": "Confirmar acceso a recursos del bloque Roleplay." },
+        { "id": "s2-b6", "start": "09:45", "end": "10:25", "duration": 40, "title": "PQC + Roleplay: Business Voice Compromise", "type": "activity", "icon": "Phone", "tool": { "name": "Roleplay estructurado (sin herramienta digital)", "url": null, "setup": "Imprimir o proyectar el guion del escenario para el Grupo B (atacante). Grupos de 3 personas." }, "description": "20 min: criptografía post-cuántica. 20 min: roleplay BVC en grupos de 3.", "keyActions": ["[9:45–10:05] PQC: algoritmo de Shor, HNDL, FIPS 203/204/205, crypto agility, inventario criptográfico antes 2026", "[10:05–10:25] Roleplay: Persona A (empleado), Persona B (atacante con guion), Persona C (observador). Escenario: llamada urgente de 'VP de Operaciones' solicitando transferencia USD 1.2M.", "Plenaria post-roleplay: ¿Qué protocolos de verificación existirían en su organización?"], "speakerNote": "El roleplay debe ser incómodo – ese malestar es el aprendizaje más duradero de la sesión." },
+        { "id": "s2-b7", "start": "10:25", "end": "11:25", "duration": 60, "title": "Desarrollo Autónomo – Lab Deepfake + Política BVC", "type": "autonomous", "icon": "Shield", "tool": null, "description": "Parte 1 (20 min): Análisis caso Bloomberg. Parte 2 (40 min): Diseño de política de verificación BVC.", "keyActions": ["[Parte 1] Leer artículo Bloomberg y responder 3 preguntas de análisis técnico", "[Parte 2] Diseñar 'Política de Verificación para Transacciones de Alto Valor': umbrales, protocolo identidad vocal/video, canal alternativo obligatorio, árbol decisión 5 pasos, cláusula 'no urgencia' 30 min"], "speakerNote": "Recordar: ninguna instrucción de pago puede ejecutarse en menos de 30 minutos sin autorización de nivel superior – esto es una política real que muchos bancos han implementado post-deepfake." },
+        { "id": "s2-b8", "start": "11:25", "end": "12:00", "duration": 35, "title": "Cierre – Segunda Ronda Experto + Lecturas S3", "type": "closing", "icon": "CheckCircle", "tool": { "name": "Slido", "url": "https://www.slido.com", "setup": "Reactivar Q&A de Slido para segunda ronda con el experto." }, "description": "Segunda ronda con el experto vía Slido. Síntesis. Asignación lecturas S3.", "keyActions": ["El experto responde preguntas pendientes de la mañana", "Participantes comparten reflexiones del desarrollo autónomo", "Docente sintetiza 3 puntos clave del día", "Asignar lecturas S3 y anunciar experto"], "speakerNote": "Cierre con la pregunta del pitch: '¿Tienen hoy un protocolo de verificación ante posible BVC? Si no, ese es el punto de acción inmediato.'" }
+      ],
+      "readings": {
+        "assigned": [
+          { "title": "Guidance on AI for AML/CFT – Capítulos 1 y 3", "author": "FATF (2023)", "url": "https://www.fatf-gafi.org", "pages": "Caps. 1 y 3" },
+          { "title": "Finance worker pays out $25M after deepfake CFO videoconference", "author": "Bloomberg Technology (Feb 2024)", "url": "https://www.bloomberg.com", "pages": "Artículo" },
+          { "title": "State of the API Security Report Q1 2024", "author": "Salt Security", "url": "https://salt.security", "pages": "Executive Summary" },
+          { "title": "X-Force Threat Intelligence Index 2024 – AI Threats", "author": "IBM Security", "url": "https://www.ibm.com/reports/threat-intelligence", "pages": "Sección IA" }
+        ],
+        "toAssign": [
+          { "title": "PCI DSS v4.0 Quick Reference Guide", "author": "PCI SSC (2024)", "url": "https://www.pcisecuritystandards.org", "pages": "30 páginas" },
+          { "title": "DORA Implementation Guidelines – Los 5 pilares", "author": "ENISA (2024)", "url": "https://www.enisa.europa.eu", "pages": "Páginas 10–40" },
+          { "title": "Decreto 0368 de 2026 – Open Finance – Artículos 1–20", "author": "Gobierno de Colombia", "url": "https://dapre.presidencia.gov.co", "pages": "Arts. 1–20" },
+          { "title": "CSF 2.0 Quick Start Guide", "author": "NIST (2024)", "url": "https://www.nist.gov/cyberframework", "pages": "Infografía 2 páginas" }
+        ]
+      }
+    },
+    {
+      "id": "s3",
+      "number": 3,
+      "date": "2026-06-04",
+      "dateLabel": "04 Junio",
+      "title": "Marcos Regulatorios: PCI-DSS v4, DORA, Open Finance",
+      "shortTitle": "Regulación & Cumplimiento",
+      "rectora": "¿Cómo convertir el cumplimiento normativo en ventaja competitiva?",
+      "color": "#2B6CB0",
+      "colorLight": "#BEE3F8",
+      "icon": "FileText",
+      "status": "upcoming",
+      "expertConference": {
+        "slot": "9:00–9:30",
+        "profileDesc": "CISO o Compliance Officer de banco colombiano de primera línea. O: Consultor PCI-DSS QSA certificado con experiencia en banca LATAM.",
+        "format": "Presencial preferido / videoconferencia",
+        "guidingQuestions": [
+          "¿Cuál fue el mayor obstáculo organizacional (no técnico) al implementar PCI-DSS v4.0?",
+          "Para un banco que entra al scope DORA por un corresponsal europeo, ¿por dónde empieza?",
+          "¿Cómo están respondiendo los bancos colombianos ante el Decreto 0368 en términos de seguridad de APIs?"
+        ],
+        "secondRound": null
+      },
+      "pitch": {
+        "headline": "El Estándar de la Confianza",
+        "subheadline": "Regulación como Arquitectura de Resiliencia",
+        "openingHook": "En 2026, el cumplimiento normativo ya no es un ejercicio de marcar casillas – es una declaración pública de confiabilidad. Los bancos que cumplan PCI-DSS v4.0, demuestren resiliencia operativa bajo principios DORA y naveguen el Open Finance con madurez no solo evitan sanciones: se diferencian en un mercado donde la confianza del consumidor es el activo más escaso.",
+        "keyCases": [
+          { "entity": "Santander", "year": 2024, "fact": "Caso referencia PCI SSC 2024: sustituyó controles legacy por microsegmentación usando Enfoque Personalizado – +40% postura de seguridad.", "source": "PCI SSC Security Summit 2024" },
+          { "entity": "Citigroup", "year": 2024, "fact": "Revisó 400+ contratos con proveedores TIC para cumplir DORA Joint Technical Standards EBA.", "source": "Citi Annual Report 2024" },
+          { "entity": "Visa / Mastercard en Colombia", "year": 2025, "fact": "Exigen a bancos adquirentes colombianos certificar PCI-DSS v4.0 antes de cierre de 2025.", "source": "PCI SSC Directives 2024" }
+        ],
+        "keyStats": [
+          { "value": "12 meses", "label": "Plazo implementación Open Finance CO desde Decreto 0368", "source": "Decreto 0368, 2026" },
+          { "value": "3 años", "label": "Ciclo TLPT bajo DORA para entidades significativas", "source": "ENISA 2024" },
+          { "value": "4h", "label": "Plazo notificación regulador incidente mayor bajo DORA", "source": "DORA Art. 19, 2022" },
+          { "value": "6", "label": "Funciones NIST CSF 2.0 (nueva: Govern)", "source": "NIST 2024" }
+        ],
+        "reflectionQuestion": "Si la SFC les solicitara hoy el log completo de todos los consentimientos de datos compartidos bajo Open Finance de los últimos 30 días, ¿cuánto tiempo tardarían en entregarlo? ¿Lo tienen automatizado o es un proceso manual?",
+        "references": [
+          "PCI Security Standards Council. (2022/2025). PCI DSS v4.0 & Quick Reference Guide.",
+          "PCI SSC. (2024). Santander PCI DSS v4.0 Customized Approach – Security Summit 2024.",
+          "Unión Europea. (2022). Reglamento (UE) 2022/2554 – DORA.",
+          "ENISA. (2024). DORA Implementation Guidelines 2024.",
+          "EBA/ESAs. (2024). Joint Technical Standards – DORA.",
+          "Citigroup. (2024). Annual Report 2024 – Regulatory Compliance Section.",
+          "NIST. (2024, Feb). Cybersecurity Framework 2.0.",
+          "Gobierno de Colombia. (2026). Decreto 0368 de 2026 – Open Finance Obligatorio.",
+          "OWASP. (2023). API Security Top 10 2023."
+        ]
+      },
+      "blocks": [
+        { "id": "s3-b1", "start": "08:00", "end": "08:15", "duration": 15, "title": "Pre-test Diagnóstico – Microsoft Forms", "type": "activity", "icon": "ClipboardList", "tool": { "name": "Microsoft Forms", "url": "https://forms.microsoft.com", "setup": "5 preguntas de selección múltiple. Proyectar resultados en tiempo real desde Forms (modo presentación).", "questions": ["¿Cuántos requisitos tiene PCI-DSS v4.0? → 12", "¿Qué significa DORA? → Digital Operational Resilience Act", "¿En qué año entró en vigor DORA? → 2025", "¿Qué obligó el Decreto 0368 de 2026 en Colombia? → Open Finance obligatorio", "¿Cuántas funciones tiene el NIST CSF 2.0? → 6"] }, "description": "Diagnóstico de conocimiento regulatorio previo. No calificar – usar como termómetro.", "keyActions": ["Proyectar resultados en tiempo real desde Forms", "Decir: 'En 4 horas ese puntaje va a verse diferente'", "Notar los gaps más frecuentes para ajustar profundidad"], "speakerNote": "Si la mayoría no sabe el número de requisitos PCI o la fecha de DORA, dar más tiempo al bloque magistral 1." },
+        { "id": "s3-b2", "start": "08:15", "end": "09:00", "duration": 45, "title": "Bloque Magistral: PCI-DSS v4.0 + DORA", "type": "lecture", "icon": "Shield", "tool": null, "description": "Arquitectura PCI-DSS v4.0, Enfoque Personalizado, requisitos críticos. DORA 5 pilares.", "keyActions": ["[8:15–8:27] PCI-DSS v4.0: 12 requisitos, Enfoque Personalizado, caso Santander PSI 2024, Colombia en scope Visa/Mastercard", "[8:27–8:39] Requisitos críticos: Req 6.4.3/11.6.1 (Magecart), Req 8.3.6/8.4.2 (MFA FIDO2), Req 12.3.2 (rev. anual)", "[8:39–8:51] DORA: alcance real para bancos colombianos, caso Citigroup 400+ contratos, 5 pilares, TLPT/TIBER-EU, riesgo terceros TIC", "[8:51–9:00] NIST CSF 2.0: función Govern como novedad, articulación con ISO 27001 y DORA"], "speakerNote": "Pregunta clave al grupo: '¿Cuántos de sus bancos tienen proveedores tecnológicos con servidores en la UE? ¿Saben si los pone en scope DORA?'" },
+        { "id": "s3-b3", "start": "09:00", "end": "09:30", "duration": 30, "title": "Conferencia Experto #2", "type": "expert", "icon": "UserCheck", "tool": { "name": "Poll Everywhere", "url": "https://www.polleverywhere.com", "setup": "Configurar durante el descanso: Slide 1 Ranking marcos, Slide 2 Open ended sobre Decreto 0368." }, "description": "20 min presentación + 10 min Q&A. Tema: PCI-DSS v4.0 en la práctica.", "keyActions": ["Presentar al experto", "Moderar Q&A presencial", "Capturar anécdotas reales para referenciar en el taller"], "speakerNote": "Pedir al experto que sea específico sobre obstáculos organizacionales – eso genera el mayor impacto en audiencias con autoridad de decisión." },
+        { "id": "s3-b4", "start": "09:30", "end": "09:45", "duration": 15, "title": "DESCANSO", "type": "break", "icon": "Coffee", "tool": null, "description": "Descanso.", "keyActions": ["Configurar Poll Everywhere para el bloque siguiente"], "speakerNote": "" },
+        { "id": "s3-b5", "start": "09:45", "end": "10:25", "duration": 40, "title": "Open Finance LATAM + Poll Everywhere", "type": "activity", "icon": "Globe", "tool": { "name": "Poll Everywhere", "url": "https://www.polleverywhere.com", "setup": "Incrustado en la presentación.", "slides": [{"type": "ranking", "question": "Ordena estos marcos regulatorios por urgencia para tu organización en 2026", "options": ["PCI-DSS v4.0", "DORA", "Decreto 0368 CO", "NIST CSF 2.0", "ISO 27001:2022"]}, {"type": "open_ended", "question": "¿Qué es lo que más le preocupa de cumplir el Decreto 0368 en tiempo?"}] }, "description": "Mapa regulatorio LATAM. Votaciones interactivas. Responsabilidad demostrada y doble consentimiento.", "keyActions": ["[9:45–10:05] Brasil, Colombia, Chile, México, Perú – semáforo de avance. Accountability + doble consentimiento trazable.", "[10:05–10:25] Poll: Ranking marcos + open ended. Comentar resultados en tiempo real.", "Transición natural: 'Ahora lo van a aplicar a un caso concreto'"], "speakerNote": "Las respuestas open ended al Decreto 0368 revelan qué tan preparadas están realmente las organizaciones – úsalas para personalizar el taller." },
+        { "id": "s3-b6", "start": "10:25", "end": "10:30", "duration": 5, "title": "Revisión Pre-test vs. Conocimiento Actual", "type": "activity", "icon": "TrendingUp", "tool": null, "description": "Comparar resultado del Forms de apertura con nivel actual. Pregunta verbal al grupo.", "keyActions": ["'¿Alguien respondería diferente ahora las preguntas del pre-test?'", "Mostrar resultados originales de Forms en pantalla"], "speakerNote": "Este momento de antes/después es motivador – el grupo puede ver su propio avance en 2.5 horas." },
+        {
+          "id": "s3-b7", "start": "10:30", "end": "11:25", "duration": 55,
+          "title": "Desarrollo Autónomo – Gap Analysis Banco Caribe", "type": "autonomous", "icon": "BarChart2", "tool": null,
+          "description": "Gap analysis regulatorio en grupos de 3-4. Presentación oral de 3 minutos por grupo.",
+          "keyActions": ["Distribuir perfil de Banco Caribe (papel o digital)", "Grupos llenan la matriz – en papel o FigJam", "Aviso a los 40 min: 'Priorizando las columnas de acción inmediata y responsable'"],
+          "speakerNote": "El nivel actual es una estimación intencional – no hay respuesta correcta. Lo importante es justificar los gaps.",
+          "caseStudy": {
+            "title": "Banco Caribe S.A.",
+            "profile": "2.3M clientes, 180 sucursales, COP 45T activos. Procesa tarjetas Visa/Mastercard internacionales (scope PCI). Filial de leasing en Madrid, España (scope DORA). Debe implementar Open Finance (Decreto 0368 – antes abril 2027). ISO 27001:2022 certificado. Presupuesto ciberseguridad: USD 8.5M/año.",
+            "matrix": {
+              "headers": ["Marco", "¿Aplica?", "Nivel actual (1–5)", "Top 3 brechas", "Acción prioritaria inmediata", "Responsable sugerido"],
+              "rows": [
+                ["PCI-DSS v4.0", "✅ Sí", "", "", "", ""],
+                ["DORA (UE)", "⚠️ Parcial (filial UE)", "", "", "", ""],
+                ["NIST CSF 2.0", "Referencia voluntaria", "", "", "", ""],
+                ["Decreto 0368 CO", "✅ Obligatorio", "", "", "", ""],
+                ["ISO 27001:2022", "✅ Certificado", "", "", "", ""]
+              ]
+            }
+          }
+        },
+        { "id": "s3-b8", "start": "11:25", "end": "12:00", "duration": 35, "title": "Presentaciones Grupales + FigJam Síntesis + Lecturas S4", "type": "closing", "icon": "CheckCircle", "tool": { "name": "FigJam", "url": "https://www.figma.com/figjam/", "setup": "Tablero compartido abierto durante presentaciones. Docente consolida brechas más frecuentes en tiempo real mientras grupos presentan." }, "description": "Presentaciones de 3 min por grupo. Síntesis colectiva en FigJam. Asignación lecturas S4.", "keyActions": ["Cada grupo: 3 min presentación oral del gap analysis", "Docente consolida en FigJam las brechas más comunes entre grupos", "Cierre: 3 hallazgos críticos del gap analysis colectivo", "Asignar lecturas S4 y anunciar experto + Genially Escape Room"], "speakerNote": "Si los grupos identifican las mismas brechas, eso es una señal del sector, no solo del caso hipotético." }
+      ],
+      "readings": {
+        "assigned": [
+          { "title": "PCI DSS v4.0 Quick Reference Guide", "author": "PCI SSC (2024)", "url": "https://www.pcisecuritystandards.org", "pages": "30 páginas" },
+          { "title": "DORA Implementation Guidelines – Los 5 pilares", "author": "ENISA (2024)", "url": "https://www.enisa.europa.eu", "pages": "Páginas 10–40" },
+          { "title": "Decreto 0368 de 2026 – Open Finance – Artículos 1–20", "author": "Gobierno de Colombia", "url": "https://dapre.presidencia.gov.co", "pages": "Arts. 1–20" },
+          { "title": "CSF 2.0 Quick Start Guide", "author": "NIST (2024)", "url": "https://www.nist.gov/cyberframework", "pages": "Infografía 2 páginas" }
+        ],
+        "toAssign": [
+          { "title": "SP 800-207 Zero Trust Architecture – Capítulos 1, 2 y 4", "author": "NIST (2020)", "url": "https://doi.org/10.6028/NIST.SP.800-207", "pages": "Caps. 1, 2, 4" },
+          { "title": "Global Threat Report 2024 – Executive Summary", "author": "CrowdStrike", "url": "https://www.crowdstrike.com/global-threat-report", "pages": "15 páginas" },
+          { "title": "The Pyramid of Pain", "author": "Bianco, D. (2013)", "url": "https://detect-respond.blogspot.com", "pages": "Artículo (5 min lectura)" },
+          { "title": "Magic Quadrant for Endpoint Protection Platforms 2024 – Key Findings", "author": "Gartner", "url": "https://www.gartner.com", "pages": "Key Findings" }
+        ]
+      }
+    },
+    {
+      "id": "s4",
+      "number": 4,
+      "date": "2026-06-10",
+      "dateLabel": "10 Junio",
+      "title": "Arquitectura Zero Trust, Resiliencia y Estrategia",
+      "shortTitle": "Zero Trust & Estrategia",
+      "rectora": "¿Cómo construir una arquitectura de defensa que perdure ante el adversario?",
+      "color": "#276749",
+      "colorLight": "#C6F6D5",
+      "icon": "Lock",
+      "status": "upcoming",
+      "expertConference": {
+        "slot": "9:00–9:35",
+        "profileDesc": "CISO de banco colombiano de primera línea. O: Arquitecto de Soluciones de Seguridad (Microsoft, Palo Alto, CrowdStrike) con experiencia en banca LATAM.",
+        "format": "Presencial preferido / videoconferencia",
+        "guidingQuestions": [
+          "¿Cuál es la mayor resistencia organizacional – no técnica – al implementar Zero Trust en un banco colombiano?",
+          "¿Cómo gestiona las identidades de máquina en un ecosistema donde conviven sistemas legacy de 20+ años con cloud nativo?",
+          "¿Qué 3 métricas usas para demostrar al Comité de Auditoría que la inversión en Zero Trust tiene ROI?"
+        ],
+        "secondRound": null
+      },
+      "pitch": {
+        "headline": "Never Trust, Always Verify",
+        "subheadline": "Arquitectura Zero Trust como Postura Estratégica de la Banca",
+        "openingHook": "La arquitectura de 'castillo y foso' murió el 13 de marzo de 2020, cuando millones de empleados bancarios se conectaron desde casa y el perímetro de red – construido durante décadas – se disolvió en horas. Para la banca moderna, el perímetro ya no es el firewall de la sede principal: es la identidad.",
+        "keyCases": [
+          { "entity": "Bank of America", "year": 2023, "fact": "ZTA en Azure/Entra ID con Conditional Access – -60% tiempo de contención de incidentes de identidad.", "source": "Microsoft Customer Story 2023" },
+          { "entity": "Goldman Sachs", "year": 2024, "fact": "Microsegmentación con Palo Alto Prisma: 1,500+ workloads aislados – -70% superficie de ataque lateral.", "source": "Palo Alto Networks Case Study 2024" },
+          { "entity": "JPMorgan Chase", "year": 2024, "fact": "3.5M identidades de máquina gestionadas. El nuevo perímetro invisible que la mayoría de bancos LATAM no gestiona.", "source": "JPMorgan Tech Blog 2024" },
+          { "entity": "Cajas Municipales Perú", "year": 2024, "fact": "Migración híbrida Azure para cumplir SBS N.º 504-2021: modernización + cumplimiento como el mismo objetivo.", "source": "Microsoft Case Study LATAM 2024" }
+        ],
+        "keyStats": [
+          { "value": "USD 657B", "label": "Mercado global ciberseguridad proyectado 2030", "source": "MarketsandMarkets 2024" },
+          { "value": "4M", "label": "Vacantes globales sin cubrir en ciberseguridad", "source": "ISC2 2024" },
+          { "value": "71%", "label": "Orgs con escasez de talento ciber con impacto en postura", "source": "ISC2 2024" },
+          { "value": "-60%", "label": "Reducción tiempo contención incidentes BofA post-ZTA", "source": "Microsoft 2023" }
+        ],
+        "reflectionQuestion": "Con todo lo aprendido en estas 4 sesiones: ¿qué cambia el lunes en su organización? No en el próximo presupuesto, no en el próximo proyecto. El lunes.",
+        "references": [
+          "NIST. (2020). SP 800-207: Zero Trust Architecture.",
+          "Microsoft. (2023). Bank of America Zero Trust Customer Story.",
+          "Palo Alto Networks. (2024). Goldman Sachs Microsegmentation Case Study.",
+          "JPMorgan Chase Tech Blog. (2024). Managing Machine Identities at Scale.",
+          "Gartner. (2024). Magic Quadrant for Endpoint Protection Platforms 2024.",
+          "MarketsandMarkets. (2024). Cybersecurity Market – Global Forecast to 2030.",
+          "Bianco, D. (2013). The Pyramid of Pain.",
+          "MITRE. (2024). ATT&CK Framework v14.",
+          "ISC2. (2024). Cybersecurity Workforce Study 2024.",
+          "CrowdStrike. (2024). Global Threat Report 2024."
+        ]
+      },
+      "blocks": [
+        { "id": "s4-b1", "start": "08:00", "end": "08:15", "duration": 15, "title": "Apertura – Wooclap: Ruleta de Conceptos ZTA", "type": "activity", "icon": "Circle", "tool": { "name": "Wooclap", "url": "https://www.wooclap.com", "setup": "Modo 'Wheel of Names' con lista de participantes + banco de 20 conceptos.", "concepts": ["Zero Trust", "Microsegmentación", "MTTD", "IAM", "PAM", "CSPM", "CASB", "Threat Hunting", "CTI", "Kill Chain", "TLPT", "BOLA", "PQC", "UEBA", "MTTR", "Adversarial ML", "BVC", "FIDO2", "SOC", "CERT/CSIRT"] }, "description": "Ruleta: participante aleatorio define concepto aleatorio. Grupo puede rescatar si no sabe.", "keyActions": ["Tono lúdico – es el último día, el ambiente debe ser de logro", "Si la persona no puede definir, el grupo ayuda", "Usar como termómetro de consolidación de las 4 sesiones"], "speakerNote": "Este bloque muestra qué conceptos quedaron más débiles – notar para reforzar durante los bloques magistrales." },
+        { "id": "s4-b2", "start": "08:15", "end": "09:00", "duration": 45, "title": "Bloque Magistral: Zero Trust + Modelo Híbrido Banca", "type": "lecture", "icon": "Shield", "tool": null, "description": "5 principios ZTA, casos globales (BofA, Goldman, JPMorgan), modelo híbrido CO, CERT/CSIRT, Pirámide del Dolor.", "keyActions": ["[8:15–8:27] ZTA principios: NIST SP 800-207. BofA -60%, Goldman -70%, JPMorgan 3.5M machine identities", "[8:27–8:39] Modelo híbrido banca CO: on-premise (core/PCI) + cloud público (digital/DR/Open Finance). IAM/CSPM/CASB/PAM. Caso Cajas Municipales Perú.", "[8:39–8:51] Shared Responsibility Model: el error más caro del cloud. S3 público, SGs mal configurados, MFA no habilitado para consolas admin.", "[8:51–9:00] CERT/CSIRT 4 capas. FS-ISAC + COLCERT. Pirámide del Dolor: TTPs > IPs/Hashes."], "speakerNote": "'El mayor error del CISO en cloud es asumir que el proveedor lo cubre todo' – esta frase genera debate. Dejar que fluya 2-3 minutos." },
+        { "id": "s4-b3", "start": "09:00", "end": "09:35", "duration": 35, "title": "Conferencia Experto #3", "type": "expert", "icon": "UserCheck", "tool": null, "description": "25 min presentación + 10 min Q&A. Tema: ZTA en banca colombiana – la realidad de la implementación.", "keyActions": ["Presentar al experto", "Moderar Q&A", "Capturar las métricas de ROI que mencione – son muy valiosas para los asistentes"], "speakerNote": "Si el experto es un CISO colombiano, pedir que comparta la conversación más difícil que tuvo con su Junta Directiva sobre ciberseguridad." },
+        { "id": "s4-b4", "start": "09:35", "end": "09:50", "duration": 15, "title": "DESCANSO", "type": "break", "icon": "Coffee", "tool": null, "description": "Descanso.", "keyActions": ["Verificar acceso al Genially Escape Room", "Confirmar acceso a draw.io o herramienta de diagrama elegida"], "speakerNote": "" },
+        { "id": "s4-b5", "start": "09:50", "end": "10:05", "duration": 15, "title": "Repaso Conceptual – Quizlet Live", "type": "activity", "icon": "Layers", "tool": { "name": "Quizlet Live", "url": "https://quizlet.com", "setup": "Set de 20 flashcards pre-cargado. Modo 'Live' divide grupos automáticamente.", "flashcardTopics": ["ZTA + NIST SP 800-207", "IAM vs PAM", "CSPM vs CASB", "MTTD vs MTTR", "Threat Hunting", "Pirámide del Dolor", "IoC vs IoA", "CTI Estratégica/Táctica/Operacional", "FS-ISAC / COLCERT / TIBER-EU / TLPT", "Microsegmentación", "Shared Responsibility Model", "FIPS 203/204/205 / Q-Day / HNDL", "Blind Eagle / Kill Chain / MITRE ATT&CK"] }, "description": "Flashcards grupales competitivas. Repaso de conceptos ZTA, CERT/CSIRT y CTI de todas las sesiones.", "keyActions": ["Quizlet divide grupos automáticamente", "Premiar al grupo ganador simbólicamente", "Revisar cuáles flashcards generaron más errores"], "speakerNote": "Si un concepto falla repetidamente, dedicar 3 min en el bloque magistral siguiente antes de seguir adelante." },
+        { "id": "s4-b6", "start": "10:05", "end": "10:30", "duration": 25, "title": "Threat Hunting + CTI + Estrategia de Cierre", "type": "lecture", "icon": "Search", "tool": null, "description": "Threat Hunting proactivo. CTI 3 niveles. APTs financieros: Blind Eagle, FIN7, Carbanak. Plataformas CTI. Recomendaciones estratégicas finales.", "keyActions": ["Threat Hunting: hipótesis basadas en TTPs – MTTD de semanas a horas", "CTI: Estratégica (tendencias APT) / Táctica (TTPs actuales) / Operacional (IoCs para bloqueo)", "APTs financieros: TTPs de Blind Eagle, FIN7, Carbanak en MITRE", "Plataformas: OpenCTI, MISP, ThreatConnect", "6 recomendaciones estratégicas finales del programa"], "speakerNote": "Las 6 recomendaciones estratégicas son el resumen ejecutivo del programa completo. Proyectarlas lentamente, una por una." },
+        {
+          "id": "s4-b7", "start": "10:30", "end": "11:25", "duration": 55,
+          "title": "Desarrollo Autónomo – Escape Room + Arquitectura ZTA", "type": "autonomous", "icon": "Map",
+          "tool": { "name": "Genially + draw.io", "url": "https://app.genially.com", "setup": "Escape Room de 5 salas preparado en Genially. Compartir link + URL draw.io (diagrams.net) como alternativa de diseño.", "escapeRooms": [{"sala": 1, "riddle": "¿Qué principio ZTA viola esta arquitectura?", "context": "Diagrama con acceso implícito por estar en red interna"}, {"sala": 2, "riddle": "El atacante tiene credenciales de un service account. ¿Qué control lo detiene?", "context": "PAM + monitoreo de identidades de máquina"}, {"sala": 3, "riddle": "Una misconfiguracion en S3 expone datos PCI. ¿Qué herramienta la habría detectado antes?", "context": "CSPM (Cloud Security Posture Management)"}, {"sala": 4, "riddle": "El MTTD de su SOC es de 22 días. ¿Qué capacidades le faltan?", "context": "Threat Hunting + CTI activa"}, {"sala": 5, "riddle": "El regulador pide demostrar cumplimiento DORA en 72 horas. ¿Cuáles son sus 3 primeras acciones?", "context": "Pregunta abierta – múltiples respuestas válidas"}] },
+          "description": "Parte 1 (20 min): Escape Room Genially en grupos. Parte 2 (35 min): Diseño de arquitectura ZTA para Banco Caribe.",
+          "keyActions": ["[Parte 1] Navegar escape room en grupos, registrar respuestas en papel", "[Parte 2] Diseñar arquitectura ZTA en capas para Banco Caribe (continuación de S3)", "Especificar: IAM, PAM, CSPM, CASB, XDR por capa. Flujo autenticación TPP externo vía API Open Finance.", "Pueden usar papel, draw.io, Lucidchart – lo importante es el razonamiento, no el diseño gráfico"],
+          "speakerNote": "El flujo de autenticación del TPP externo conecta todas las sesiones: amenaza (S1) + IA (S2) + regulación (S3) + ZTA (S4). Señalarlo en el debriefing."
+        },
+        { "id": "s4-b8", "start": "11:25", "end": "11:45", "duration": 20, "title": "Presentaciones Finales: Arquitectura ZTA", "type": "activity", "icon": "Monitor", "tool": null, "description": "Plenaria de cierre técnico. Cada grupo presenta arquitectura en 2-3 min.", "keyActions": ["Cada grupo: 2-3 min de presentación oral", "Docente retroalimenta los 2 elementos más relevantes de cada diseño", "Resaltar: qué grupo logró conectar mejor Open Finance + ZTA + regulación"], "speakerNote": "No criticar lo que falta – celebrar lo que lograron en 4 sesiones de 4 horas." },
+        { "id": "s4-b9", "start": "11:45", "end": "12:00", "duration": 15, "title": "Evaluación Final Socrative + Cierre del Programa", "type": "closing", "icon": "Award", "tool": { "name": "Socrative", "url": "https://socrative.com", "setup": "15 preguntas: 10 cerradas (selección múltiple) + 5 abiertas cortas. Abarca conceptos de las 4 sesiones." }, "description": "Evaluación final 8 min. Cierre del programa con regreso al Padlet de S1.", "keyActions": ["[11:45–11:53] Socrative: 15 preguntas. Compartir reportes individuales al finalizar.", "[11:53–12:00] Regresar al Padlet de S1: '¿Algo en su tarjeta cambió? ¿Agregarían algo?'", "Pregunta de cierre del programa: '¿Qué cambia el lunes en su organización? No en el próximo presupuesto. El lunes.'", "Compartir recursos finales: FS-ISAC, COLCERT, RedCiber, bibliografía completa."], "speakerNote": "El regreso al Padlet inicial es el gesto de cierre más poderoso del programa – hace tangible el aprendizaje de 4 sesiones." }
+      ],
+      "readings": {
+        "assigned": [
+          { "title": "SP 800-207 Zero Trust Architecture – Capítulos 1, 2 y 4", "author": "NIST (2020)", "url": "https://doi.org/10.6028/NIST.SP.800-207", "pages": "Caps. 1, 2, 4" },
+          { "title": "Global Threat Report 2024 – Executive Summary", "author": "CrowdStrike", "url": "https://www.crowdstrike.com/global-threat-report", "pages": "15 páginas" },
+          { "title": "The Pyramid of Pain", "author": "Bianco, D. (2013)", "url": "https://detect-respond.blogspot.com", "pages": "Artículo (5 min)" },
+          { "title": "Magic Quadrant for Endpoint Protection Platforms 2024 – Key Findings", "author": "Gartner", "url": "https://www.gartner.com", "pages": "Key Findings" }
+        ],
+        "toAssign": []
+      }
+    }
+  ]
+}
