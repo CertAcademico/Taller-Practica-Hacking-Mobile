@@ -1,7 +1,12 @@
-Scanning Tools and Enumeration Objectives
+# Redes — Herramientas de Reconocimiento y Enumeración
 
+Catálogo de herramientas para scanning, reconocimiento de red y enumeración de servicios, con contexto de aplicabilidad táctica y referencias MITRE ATT&CK.
 
-https://github.com/future-architect/vuls
+---
+
+## Referencias
+
+- https://github.com/future-architect/vuls
 https://github.com/evilsocket/opensnitch
 https://github.com/nmap/nmap
 https://github.com/slackhq/nebula

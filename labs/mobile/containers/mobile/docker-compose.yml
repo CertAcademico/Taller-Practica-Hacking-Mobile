@@ -1,0 +1,66 @@
+services:
+
+  # ─── Android Emulator (noVNC) ────────────────────────────────────────────────
+  android:
+    image: budtmo/docker-android:emulator_11.0
+    privileged: true
+    container_name: mobile-android
+    environment:
+      - EMULATOR_DEVICE=Nexus 5
+      - WEB_VNC=true
+      - APPIUM=false
+    ports:
+      - "6080:6080"   # noVNC → http://localhost:6080
+      - "5554:5554"   # ADB emulator console
+      - "5555:5555"   # ADB TCP
+    volumes:
+      - ../../vulnerable-apps:/root/apks:ro
+    networks:
+      - mobile-net
+    healthcheck:
+      test: ["CMD", "adb", "devices"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 90s
+
+  # ─── MobSF (análisis estático / dinámico) ────────────────────────────────────
+  mobsf:
+    image: opensecurity/mobile-security-framework-mobsf:latest
+    container_name: mobile-mobsf
+    ports:
+      - "8000:8000"   # Web UI → http://localhost:8000
+    volumes:
+      - mobsf-data:/home/mobsf/.MobSF
+      - ../../vulnerable-apps:/uploads:ro
+    environment:
+      - MOBSF_ANALYZER_IDENTIFIER=emulator-5554
+    networks:
+      - mobile-net
+
+  # ─── Mobile Tools (jadx · apktool · frida · objection · adb) ─────────────────
+  mobile-tools:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mobile-tools
+    tty: true
+    stdin_open: true
+    volumes:
+      - ../../vulnerable-apps:/apks
+      - tools-workspace:/workspace
+    working_dir: /workspace
+    networks:
+      - mobile-net
+    depends_on:
+      - android
+
+# ─── Volumes ─────────────────────────────────────────────────────────────────
+volumes:
+  mobsf-data:
+  tools-workspace:
+
+# ─── Red interna ─────────────────────────────────────────────────────────────
+networks:
+  mobile-net:
+    driver: bridge

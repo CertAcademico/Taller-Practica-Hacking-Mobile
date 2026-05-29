@@ -73,8 +73,10 @@ cd LabThinkTank.io
 
 ## Organization
 
-CertAcademico<p align="center">
-  <img src="Imagen Cert Academico.png" alt="CertAcademico LabThinkTank" width="800">
+CertAcademico
+
+<p align="center">
+  <img src="assets/logo/Imagen Cert Academico.png" alt="CertAcademico LabThinkTank" width="800">
 </p>
 
 # LabThinkTank.io
