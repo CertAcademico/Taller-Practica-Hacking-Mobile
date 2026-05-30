@@ -41,6 +41,26 @@
       "sessionsRef": "mobile-security"
     },
     {
+      "id": "active-directory-2026",
+      "slug": "active-directory",
+      "title": "Active Directory Penetration Testing",
+      "shortTitle": "Active Directory",
+      "description": "Ataques completos a entornos Windows Active Directory: enumeración LDAP, Kerberoasting, AS-REP Roasting, Pass-the-Hash, BloodHound attack paths, DCSync y Golden Ticket.",
+      "category": "Seguridad Ofensiva",
+      "level": "Intermedio–Avanzado",
+      "color": "#C05621",
+      "colorLight": "#FEEBC8",
+      "icon": "Target",
+      "status": "active",
+      "instructor": "Emanuel Ortiz R.",
+      "institution": "CERT Académico – LabThinkTank",
+      "cohort": "Q3 2026",
+      "totalSessions": 6,
+      "totalHours": 18,
+      "tags": ["Active Directory", "Kerberoasting", "BloodHound", "impacket", "NetExec", "DCSync", "Golden Ticket", "MITRE ATT&CK"],
+      "sessionsRef": "active-directory"
+    },
+    {
       "id": "osint-2026",
       "slug": "osint-automation",
       "title": "OSINT & Reconocimiento Automatizado",

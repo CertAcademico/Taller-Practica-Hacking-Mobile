@@ -1,0 +1,90 @@
+services:
+
+  # ─── Domain Controller (Samba AD) ─────────────────────────────────────────
+  dc01:
+    build:
+      context: ./dc
+      dockerfile: Dockerfile
+    container_name: ad-dc01
+    hostname: DC01
+    privileged: true
+    environment:
+      - SAMBA_DOMAIN=LABTHINKTANK
+      - SAMBA_REALM=LABTHINKTANK.LOCAL
+      - SAMBA_ADMIN_PASSWORD=Lab@Think2026!
+    ports:
+      - "389:389"    # LDAP
+      - "636:636"    # LDAPS
+      - "445:445"    # SMB
+      - "88:88"      # Kerberos
+      - "53:53/udp"  # DNS
+    networks:
+      ad-net:
+        ipv4_address: 192.168.100.10
+    healthcheck:
+      test: ["CMD", "smbclient", "-L", "//127.0.0.1", "-U", "Administrator%Lab@Think2026!"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # ─── BloodHound Community Edition ─────────────────────────────────────────
+  bloodhound:
+    image: specterops/bloodhound:latest
+    container_name: ad-bloodhound
+    ports:
+      - "8080:8080"   # http://localhost:8080
+    environment:
+      - BHE_DISABLE_CYPHER_COMPLEXITY_LIMIT=true
+    depends_on:
+      - bloodhound-db
+    networks:
+      - ad-net
+    restart: unless-stopped
+
+  bloodhound-db:
+    image: neo4j:4.4
+    container_name: ad-neo4j
+    environment:
+      - NEO4J_AUTH=neo4j/bloodhound
+      - NEO4J_PLUGINS=["apoc"]
+    ports:
+      - "7474:7474"   # Neo4j browser
+      - "7687:7687"   # Bolt
+    volumes:
+      - neo4j-data:/data
+    networks:
+      - ad-net
+    restart: unless-stopped
+
+  # ─── Attack Tools Container ────────────────────────────────────────────────
+  ad-tools:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ad-tools
+    tty: true
+    stdin_open: true
+    volumes:
+      - ad-workspace:/workspace
+      - ../../../reports:/workspace/reports
+    working_dir: /workspace
+    networks:
+      ad-net:
+        ipv4_address: 192.168.100.50
+    depends_on:
+      - dc01
+    dns:
+      - 192.168.100.10   # usar el DC como DNS
+
+# ─── Volumes & Networks ───────────────────────────────────────────────────
+volumes:
+  neo4j-data:
+  ad-workspace:
+
+networks:
+  ad-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24

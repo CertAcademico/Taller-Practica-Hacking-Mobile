@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {
-  Terminal, Wifi, Code2, Smartphone, Target, Boxes, Globe, Search,
+  Terminal, Wifi, Code2, Smartphone, Target, Boxes, Globe, Search, Network,
   GraduationCap, ChevronLeft, Copy, Check, ExternalLink,
   Container, Play, type LucideIcon,
 } from "lucide-react"
@@ -93,6 +93,25 @@ const LABS: LabModule[] = [
       { name: "Android (noVNC)", url: "http://localhost:6080", description: "Emulador Android 11" },
       { name: "MobSF",           url: "http://localhost:8000", description: "Análisis estático / dinámico" },
       { name: "mitmproxy UI",    url: "http://localhost:8081", description: "Proxy de interceptación" },
+    ],
+  },
+  {
+    id: "active-directory",
+    title: "Active Directory",
+    shortTitle: "AD Pentesting",
+    description: "Ruta completa de compromiso de un dominio Windows: enumeración LDAP, Kerberoasting, BloodHound attack paths, DCSync y Golden Ticket sobre Samba AD dockerizado.",
+    icon: Network,
+    color: "#C05621",
+    status: "available",
+    difficulty: "Avanzado",
+    tools: ["impacket", "NetExec", "BloodHound", "Kerbrute", "Responder", "evil-winrm"],
+    path: "labs/ad/",
+    quickStart: "cd labs/ad && ./containers/setup.sh",
+    labCount: 6,
+    docker: [
+      { name: "DC01 (Samba AD)", url: "ldap://192.168.100.10", description: "LABTHINKTANK.LOCAL — LDAP:389 SMB:445 Kerberos:88" },
+      { name: "BloodHound CE",   url: "http://localhost:8080", description: "Attack path analysis" },
+      { name: "Neo4j Browser",   url: "http://localhost:7474", description: "Grafo de relaciones AD" },
     ],
   },
   {
