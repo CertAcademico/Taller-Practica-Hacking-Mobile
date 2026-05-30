@@ -41,6 +41,26 @@
       "sessionsRef": "mobile-security"
     },
     {
+      "id": "cloud-security-2026",
+      "slug": "cloud-security",
+      "title": "Cloud & Container Security",
+      "shortTitle": "Cloud Security",
+      "description": "Seguridad ofensiva en AWS, Kubernetes y IaC: S3 misconfigurations, IAM privilege escalation, IMDS via SSRF, container escape, Terraform scanning y pipeline de ataque cloud completo con Pacu y ScoutSuite.",
+      "category": "Cloud Security",
+      "level": "Intermedio–Avanzado",
+      "color": "#276749",
+      "colorLight": "#C6F6D5",
+      "icon": "Cloud",
+      "status": "active",
+      "instructor": "Emanuel Ortiz R.",
+      "institution": "CERT Académico – LabThinkTank",
+      "cohort": "Q4 2026",
+      "totalSessions": 6,
+      "totalHours": 18,
+      "tags": ["AWS", "LocalStack", "IAM", "S3", "Kubernetes", "IMDS", "Terraform", "Checkov", "Pacu", "SSRF"],
+      "sessionsRef": "cloud-security"
+    },
+    {
       "id": "active-directory-2026",
       "slug": "active-directory",
       "title": "Active Directory Penetration Testing",

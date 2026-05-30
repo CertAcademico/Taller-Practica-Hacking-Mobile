@@ -1,0 +1,139 @@
+services:
+
+  # ─── LocalStack (AWS simulado) ─────────────────────────────────────────────
+  localstack:
+    image: localstack/localstack:latest
+    container_name: cloud-localstack
+    ports:
+      - "4566:4566"    # endpoint unificado de todos los servicios AWS
+      - "4510-4559:4510-4559"
+    environment:
+      - SERVICES=s3,iam,sts,lambda,ec2,secretsmanager,ssm,cloudtrail
+      - DEBUG=0
+      - PERSISTENCE=1
+      - LAMBDA_EXECUTOR=docker
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - localstack-data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./localstack-init:/etc/localstack/init/ready.d  # scripts de inicialización
+    networks:
+      - cloud-net
+    healthcheck:
+      test: ["CMD", "curl", "-s", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ─── Metadata service simulado (IMDS) ────────────────────────────────────
+  imds-mock:
+    image: python:3.12-slim
+    container_name: cloud-imds
+    command: >
+      python3 -c "
+      from http.server import HTTPServer, BaseHTTPRequestHandler
+      import json
+
+      class IMDSHandler(BaseHTTPRequestHandler):
+          def log_message(self, fmt, *args): pass
+          def do_GET(self):
+              responses = {
+                  '/latest/meta-data/': 'ami-id\ninstance-id\niam/\nlocal-ipv4\n',
+                  '/latest/meta-data/instance-id': 'i-0abc123def456',
+                  '/latest/meta-data/local-ipv4': '172.16.0.100',
+                  '/latest/meta-data/iam/': 'info\nsecurity-credentials/\n',
+                  '/latest/meta-data/iam/info': json.dumps({'InstanceProfileArn': 'arn:aws:iam::123456789012:instance-profile/ec2-role', 'InstanceProfileId': 'AIPAI3XXXXXXXXXXX'}),
+                  '/latest/meta-data/iam/security-credentials/': 'ec2-prod-role\n',
+                  '/latest/meta-data/iam/security-credentials/ec2-prod-role': json.dumps({
+                      'Code': 'Success', 'Type': 'AWS-HMAC',
+                      'AccessKeyId': 'ASIA1234567890ABCDEF',
+                      'SecretAccessKey': 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+                      'Token': 'AQoDYXdzEJr//////////wEa...',
+                      'Expiration': '2026-12-31T23:59:59Z'
+                  }),
+                  '/latest/user-data': '#!/bin/bash\nexport DB_PASSWORD=SuperSecret2026!\nexport API_KEY=sk-prod-abc123xyz',
+              }
+              body = responses.get(self.path, '404 Not Found').encode()
+              self.send_response(200 if self.path in responses else 404)
+              self.send_header('Content-Type', 'text/plain')
+              self.end_headers()
+              self.wfile.write(body)
+
+      HTTPServer(('0.0.0.0', 80), IMDSHandler).serve_forever()
+      "
+    ports:
+      - "8169:80"    # simular 169.254.169.254 → redirigir en el lab
+    networks:
+      - cloud-net
+
+  # ─── Vulnerable web app (para SSRF → IMDS) ───────────────────────────────
+  ssrf-app:
+    image: python:3.12-slim
+    container_name: cloud-ssrf-app
+    command: >
+      python3 -c "
+      from http.server import HTTPServer, BaseHTTPRequestHandler
+      import urllib.request, urllib.error
+
+      class SSRFHandler(BaseHTTPRequestHandler):
+          def log_message(self, fmt, *args): pass
+          def do_GET(self):
+              from urllib.parse import urlparse, parse_qs
+              qs = parse_qs(urlparse(self.path).query)
+              url = qs.get('url', [''])[0]
+              if url:
+                  try:
+                      with urllib.request.urlopen(url, timeout=5) as r:
+                          body = r.read()
+                      self.send_response(200)
+                      self.send_header('Content-Type','text/plain')
+                      self.end_headers()
+                      self.wfile.write(body)
+                  except Exception as e:
+                      self.send_response(500)
+                      self.end_headers()
+                      self.wfile.write(str(e).encode())
+              else:
+                  self.send_response(200)
+                  self.end_headers()
+                  self.wfile.write(b'Use: /?url=http://...')
+
+      HTTPServer(('0.0.0.0', 80), SSRFHandler).serve_forever()
+      "
+    ports:
+      - "8181:80"    # http://localhost:8181/?url=http://cloud-imds/latest/meta-data/
+    networks:
+      - cloud-net
+
+  # ─── Cloud Attack Tools ───────────────────────────────────────────────────
+  cloud-tools:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cloud-tools
+    tty: true
+    stdin_open: true
+    environment:
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    volumes:
+      - cloud-workspace:/workspace
+      - ../../../reports:/workspace/reports
+      - ../terraform:/workspace/terraform
+    working_dir: /workspace
+    networks:
+      - cloud-net
+    depends_on:
+      localstack:
+        condition: service_healthy
+
+# ─── Volumes & Networks ───────────────────────────────────────────────────
+volumes:
+  localstack-data:
+  cloud-workspace:
+
+networks:
+  cloud-net:
+    driver: bridge

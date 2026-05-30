@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {
-  Terminal, Wifi, Code2, Smartphone, Target, Boxes, Globe, Search, Network,
+  Terminal, Wifi, Code2, Smartphone, Target, Boxes, Globe, Search, Network, Cloud,
   GraduationCap, ChevronLeft, Copy, Check, ExternalLink,
   Container, Play, type LucideIcon,
 } from "lucide-react"
@@ -93,6 +93,25 @@ const LABS: LabModule[] = [
       { name: "Android (noVNC)", url: "http://localhost:6080", description: "Emulador Android 11" },
       { name: "MobSF",           url: "http://localhost:8000", description: "Análisis estático / dinámico" },
       { name: "mitmproxy UI",    url: "http://localhost:8081", description: "Proxy de interceptación" },
+    ],
+  },
+  {
+    id: "cloud",
+    title: "Cloud Security",
+    shortTitle: "Cloud",
+    description: "AWS misconfigurations, IAM privilege escalation, IMDS via SSRF, container escape en Kubernetes e IaC scanning con Checkov — sobre LocalStack dockerizado.",
+    icon: Cloud,
+    color: "#276749",
+    status: "available",
+    difficulty: "Avanzado",
+    tools: ["aws-cli", "Pacu", "CloudFox", "Checkov", "truffleHog", "ScoutSuite", "kubectl"],
+    path: "labs/cloud/",
+    quickStart: "cd labs/cloud && ./containers/setup.sh",
+    labCount: 6,
+    docker: [
+      { name: "LocalStack",  url: "http://localhost:4566", description: "AWS simulado — S3, IAM, Secrets, SSM" },
+      { name: "SSRF App",    url: "http://localhost:8181", description: "App vulnerable para explotar IMDS" },
+      { name: "IMDS Mock",   url: "http://localhost:8169", description: "169.254.169.254 simulado con credenciales IAM" },
     ],
   },
   {
