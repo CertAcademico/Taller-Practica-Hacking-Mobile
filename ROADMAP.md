@@ -17,7 +17,7 @@
 - [ ] AI-Assisted Reporting
 - [ ] Threat Intelligence Integration
 - [ ] Dashboard Web UI
-- [ ] Reporting Engine
+- [x] Reporting Engine
 
 ## Phase 4
 - [ ] Cyber Range

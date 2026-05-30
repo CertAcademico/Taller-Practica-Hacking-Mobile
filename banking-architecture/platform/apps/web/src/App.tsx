@@ -8,6 +8,7 @@ import SessionView from "./screens/SessionView"
 import Bibliography from "./screens/Bibliography"
 import ToolsLibrary from "./screens/ToolsLibrary"
 import Labs from "./screens/Labs"
+import ReportGenerator from "./screens/ReportGenerator"
 import ToastNotification from "./components/ToastNotification"
 import { useStore } from "./store/useStore"
 import type { Course, Session } from "./types"
@@ -50,6 +51,7 @@ export default function App() {
       {currentView === "bibliography"&& <Bibliography sessions={courseSessions} />}
       {currentView === "tools"       && <ToolsLibrary sessions={courseSessions} />}
       {currentView === "labs"        && <Labs />}
+      {currentView === "reports"     && <ReportGenerator />}
 
       {/* Toast stack */}
       <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2 min-w-[280px] max-w-sm">

@@ -1,7 +1,7 @@
 import {
   ShieldAlert, Smartphone, Radar, Cloud, Target,
   Clock, BookOpen, Users, Lock, ChevronRight,
-  GraduationCap, FlaskConical, type LucideIcon,
+  GraduationCap, FlaskConical, FileText, type LucideIcon,
 } from "lucide-react"
 import { useStore } from "@/store/useStore"
 import type { Course } from "@/types"
@@ -149,6 +149,13 @@ export default function GeneralDashboard() {
             >
               <FlaskConical size={13} />
               Labs
+            </button>
+            <button
+              onClick={() => navigate("reports")}
+              className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-elevated border border-slate-700/50 text-slate-300 hover:text-slate-100 hover:border-slate-500 transition-colors"
+            >
+              <FileText size={13} />
+              Reportes
             </button>
             <div className="flex items-center gap-2 text-xs text-slate-500">
               <Users size={13} />

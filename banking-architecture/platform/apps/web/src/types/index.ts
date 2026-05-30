@@ -183,7 +183,42 @@ export interface Course {
 
 // ─── Views ────────────────────────────────────────────────────────────────────
 
-export type AppView = "home" | "course" | "session" | "bibliography" | "tools" | "labs"
+export type AppView = "home" | "course" | "session" | "bibliography" | "tools" | "labs" | "reports"
+
+// ─── Reporting ────────────────────────────────────────────────────────────────
+
+export type FindingSeverity = "critical" | "high" | "medium" | "low" | "informational"
+export type FindingStatus   = "open" | "in-progress" | "remediated" | "accepted-risk"
+
+export interface Finding {
+  id: string
+  title: string
+  severity: FindingSeverity
+  status: FindingStatus
+  cvss: string
+  cve?: string
+  ttp?: string          // MITRE ATT&CK TTP (ej: T1190)
+  owasp?: string        // OWASP category (ej: A03:2021)
+  affectedSystems: string
+  description: string
+  impact: string
+  evidence: string
+  remediation: string
+  references: string
+}
+
+export interface Engagement {
+  id: string
+  title: string
+  client: string
+  tester: string
+  startDate: string
+  endDate: string
+  scope: string
+  methodology: string
+  executiveSummary: string
+  findings: Finding[]
+}
 export type ActiveTab = "blocks" | "pitch" | "readings" | "expert"
 
 export interface TimerState {
