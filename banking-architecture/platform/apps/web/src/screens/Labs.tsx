@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {
-  Terminal, Wifi, Code2, Smartphone, Target, Boxes,
+  Terminal, Wifi, Code2, Smartphone, Target, Boxes, Globe,
   GraduationCap, ChevronLeft, Copy, Check, ExternalLink,
   Container, Play, type LucideIcon,
 } from "lucide-react"
@@ -93,6 +93,25 @@ const LABS: LabModule[] = [
       { name: "Android (noVNC)", url: "http://localhost:6080", description: "Emulador Android 11" },
       { name: "MobSF",           url: "http://localhost:8000", description: "Análisis estático / dinámico" },
       { name: "mitmproxy UI",    url: "http://localhost:8081", description: "Proxy de interceptación" },
+    ],
+  },
+  {
+    id: "web",
+    title: "Web Exploitation",
+    shortTitle: "Web",
+    description: "OWASP Top 10 en la práctica: SQLi, XSS, IDOR, File Upload, SSRF y Command Injection sobre DVWA, Juice Shop y WebGoat en entorno Docker.",
+    icon: Globe,
+    color: "#DD6B20",
+    status: "available",
+    difficulty: "Intermedio",
+    tools: ["burpsuite", "sqlmap", "gobuster", "nikto", "DVWA", "Juice Shop", "WebGoat"],
+    path: "labs/web/",
+    quickStart: "cd labs/web && ./containers/setup.sh",
+    labCount: 6,
+    docker: [
+      { name: "DVWA",       url: "http://localhost:8080", description: "PHP/MySQL — SQLi, XSS, File Upload, CMDi" },
+      { name: "Juice Shop", url: "http://localhost:3000",  description: "Node.js — IDOR, XSS moderno, OWASP Top 10" },
+      { name: "WebGoat",    url: "http://localhost:8888",  description: "Java/Spring — SSRF, A2-A10" },
     ],
   },
   {

@@ -1,0 +1,91 @@
+services:
+
+  # ─── DVWA (Damn Vulnerable Web Application) ───────────────────────────────
+  dvwa:
+    image: ghcr.io/digininja/dvwa:latest
+    container_name: web-dvwa
+    environment:
+      - DB_SERVER=dvwa-db
+      - DB_PORT=3306
+      - DB_DATABASE=dvwa
+      - DB_USERNAME=dvwa
+      - DB_PASSWORD=p@ssw0rd
+      - RECAPTCHA_PRIV_KEY=""
+      - RECAPTCHA_PUB_KEY=""
+    ports:
+      - "8080:80"   # http://localhost:8080
+    depends_on:
+      dvwa-db:
+        condition: service_healthy
+    networks:
+      - web-net
+    restart: unless-stopped
+
+  dvwa-db:
+    image: mariadb:10.11
+    container_name: web-dvwa-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=dvwa
+      - MYSQL_DATABASE=dvwa
+      - MYSQL_USER=dvwa
+      - MYSQL_PASSWORD=p@ssw0rd
+    volumes:
+      - dvwa-db-data:/var/lib/mysql
+    networks:
+      - web-net
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ─── OWASP Juice Shop ─────────────────────────────────────────────────────
+  juiceshop:
+    image: bkimminich/juice-shop:latest
+    container_name: web-juiceshop
+    ports:
+      - "3000:3000"   # http://localhost:3000
+    networks:
+      - web-net
+    restart: unless-stopped
+
+  # ─── WebGoat (OWASP) ──────────────────────────────────────────────────────
+  webgoat:
+    image: webgoat/goat-and-wolf:latest
+    container_name: web-webgoat
+    ports:
+      - "8888:8080"   # http://localhost:8888/WebGoat
+      - "9090:9090"   # WebWolf
+    environment:
+      - TZ=America/Bogota
+    networks:
+      - web-net
+    restart: unless-stopped
+
+  # ─── Proxy tools container ────────────────────────────────────────────────
+  web-tools:
+    image: kalilinux/kali-rolling:latest
+    container_name: web-tools
+    tty: true
+    stdin_open: true
+    command: >
+      bash -c "apt-get update -qq &&
+               apt-get install -y -qq curl wget nmap gobuster nikto sqlmap wfuzz python3 python3-pip &&
+               pip3 install --break-system-packages requests httpx &&
+               bash"
+    volumes:
+      - web-workspace:/workspace
+      - ./wordlists:/wordlists:ro
+    working_dir: /workspace
+    networks:
+      - web-net
+
+# ─── Volumes & Networks ───────────────────────────────────────────────────
+volumes:
+  dvwa-db-data:
+  web-workspace:
+
+networks:
+  web-net:
+    driver: bridge

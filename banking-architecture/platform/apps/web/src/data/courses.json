@@ -41,6 +41,26 @@
       "sessionsRef": "mobile-security"
     },
     {
+      "id": "web-exploitation-2026",
+      "slug": "web-exploitation",
+      "title": "Web Application Penetration Testing",
+      "shortTitle": "Web Exploitation",
+      "description": "Pentesting de aplicaciones web con metodología OWASP. Laboratorios prácticos sobre DVWA, Juice Shop y WebGoat: SQLi, XSS, IDOR, File Upload, SSRF y Command Injection con Burp Suite.",
+      "category": "Seguridad Ofensiva",
+      "level": "Principiante–Intermedio",
+      "color": "#DD6B20",
+      "colorLight": "#FEEBC8",
+      "icon": "Target",
+      "status": "active",
+      "instructor": "Emanuel Ortiz R.",
+      "institution": "CERT Académico – LabThinkTank",
+      "cohort": "Q3 2026",
+      "totalSessions": 6,
+      "totalHours": 18,
+      "tags": ["OWASP Top 10", "SQLi", "XSS", "IDOR", "Burp Suite", "DVWA", "Juice Shop", "RCE"],
+      "sessionsRef": "web-exploitation"
+    },
+    {
       "id": "threat-intelligence-2026",
       "slug": "threat-intelligence",
       "title": "Threat Intelligence & Hunting",
