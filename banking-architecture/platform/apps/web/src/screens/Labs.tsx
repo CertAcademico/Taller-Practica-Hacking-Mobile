@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {
-  Terminal, Wifi, Code2, Smartphone, Target, Boxes, Globe,
+  Terminal, Wifi, Code2, Smartphone, Target, Boxes, Globe, Search,
   GraduationCap, ChevronLeft, Copy, Check, ExternalLink,
   Container, Play, type LucideIcon,
 } from "lucide-react"
@@ -93,6 +93,23 @@ const LABS: LabModule[] = [
       { name: "Android (noVNC)", url: "http://localhost:6080", description: "Emulador Android 11" },
       { name: "MobSF",           url: "http://localhost:8000", description: "Análisis estático / dinámico" },
       { name: "mitmproxy UI",    url: "http://localhost:8081", description: "Proxy de interceptación" },
+    ],
+  },
+  {
+    id: "osint",
+    title: "OSINT Automation",
+    shortTitle: "OSINT",
+    description: "Reconocimiento pasivo y activo: DNS, subdominios, emails, Shodan, people OSINT y pipeline automatizado que genera reportes Markdown.",
+    icon: Search,
+    color: "#2B6CB0",
+    status: "available",
+    difficulty: "Intermedio",
+    tools: ["subfinder", "amass", "theHarvester", "httpx", "nuclei", "shodan", "SpiderFoot"],
+    path: "labs/osint/",
+    quickStart: "cd labs/osint && ./containers/setup.sh",
+    labCount: 5,
+    docker: [
+      { name: "SpiderFoot", url: "http://localhost:5009", description: "OSINT automatizado con 200+ módulos" },
     ],
   },
   {

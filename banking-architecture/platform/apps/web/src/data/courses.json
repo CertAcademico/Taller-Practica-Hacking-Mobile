@@ -41,6 +41,26 @@
       "sessionsRef": "mobile-security"
     },
     {
+      "id": "osint-2026",
+      "slug": "osint-automation",
+      "title": "OSINT & Reconocimiento Automatizado",
+      "shortTitle": "OSINT Automation",
+      "description": "Reconocimiento pasivo y activo usando fuentes abiertas: DNS, subdominios, emails corporativos, Shodan, people OSINT y pipelines automatizados con subfinder, amass, theHarvester y nuclei.",
+      "category": "Seguridad Ofensiva",
+      "level": "Principiante–Intermedio",
+      "color": "#2B6CB0",
+      "colorLight": "#BEE3F8",
+      "icon": "Radar",
+      "status": "active",
+      "instructor": "Emanuel Ortiz R.",
+      "institution": "CERT Académico – LabThinkTank",
+      "cohort": "Q3 2026",
+      "totalSessions": 5,
+      "totalHours": 15,
+      "tags": ["OSINT", "subfinder", "amass", "theHarvester", "Shodan", "SpiderFoot", "DNS", "Google Dorks"],
+      "sessionsRef": "osint"
+    },
+    {
       "id": "web-exploitation-2026",
       "slug": "web-exploitation",
       "title": "Web Application Penetration Testing",

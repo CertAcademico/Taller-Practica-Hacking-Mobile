@@ -1,0 +1,31 @@
+services:
+
+  # ─── OSINT Tools Container ────────────────────────────────────────────────
+  osint-tools:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: osint-tools
+    tty: true
+    stdin_open: true
+    volumes:
+      - ../../../reports:/workspace/reports
+      - osint-workspace:/workspace/data
+      - ./config:/root/.config:ro   # API keys (shodan, etc.)
+    working_dir: /workspace
+    network_mode: host              # acceso directo a internet para recon
+
+  # ─── SpiderFoot (interfaz web para OSINT automatizado) ────────────────────
+  spiderfoot:
+    image: spiderfoot/spiderfoot:latest
+    container_name: osint-spiderfoot
+    ports:
+      - "5009:5009"   # http://localhost:5009
+    volumes:
+      - spiderfoot-data:/home/spiderfoot
+    restart: unless-stopped
+
+# ─── Volumes ──────────────────────────────────────────────────────────────
+volumes:
+  osint-workspace:
+  spiderfoot-data:
