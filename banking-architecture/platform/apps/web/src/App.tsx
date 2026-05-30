@@ -1,5 +1,6 @@
 import { useEffect } from "react"
-import sessionsData from "./data/sessions.json"
+import sessionsData       from "./data/sessions.json"
+import mobileSessions     from "./data/mobile-sessions.json"
 import coursesData from "./data/courses.json"
 import GeneralDashboard from "./screens/GeneralDashboard"
 import CourseDashboard from "./screens/CourseDashboard"
@@ -14,9 +15,9 @@ import type { Course, Session } from "./types"
 const allCourses = coursesData.courses as Course[]
 const sessions   = sessionsData.sessions as Session[]
 
-// Map course id → sessions (currently only one course has real sessions)
 const COURSE_SESSIONS: Record<string, Session[]> = {
   "cybersecurity-banking-2026": sessions,
+  "mobile-security-2026":       mobileSessions.sessions as Session[],
 }
 
 export default function App() {

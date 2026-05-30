@@ -1,0 +1,662 @@
+{
+  "sessions": [
+    {
+      "id": "mob-s1",
+      "number": 1,
+      "date": "2026-07-05",
+      "dateLabel": "Sábado 5 Jul",
+      "title": "ADB Básico y entorno Docker",
+      "shortTitle": "ADB & Docker",
+      "rectora": "Entorno y fundamentos Android",
+      "color": "#805AD5",
+      "colorLight": "#E9D8FD",
+      "icon": "Smartphone",
+      "status": "active",
+      "expertConference": null,
+      "pitch": {
+        "headline": "El dispositivo Android como superficie de ataque",
+        "subheadline": "Comprender el entorno antes de atacarlo",
+        "openingHook": "Android corre en 3,300 millones de dispositivos. Cada uno expone una superficie de ataque que la mayoría de desarrolladores ignora.",
+        "keyCases": [
+          {
+            "entity": "Nuo Group",
+            "year": 2023,
+            "fact": "Apps bancarias Android con ADB habilitado en producción permitieron extracción silenciosa de datos",
+            "source": "OWASP MASTG Case Studies"
+          }
+        ],
+        "keyStats": [
+          { "value": "75%", "label": "Apps Android en stores tienen al menos una vulnerabilidad OWASP Mobile Top 10", "source": "NowSecure 2024" },
+          { "value": "3.3B", "label": "Dispositivos Android activos globalmente", "source": "Statcounter 2024" }
+        ],
+        "reflectionQuestion": "¿Qué información crítica puede extraer un atacante con solo acceso ADB a un dispositivo Android?",
+        "references": [
+          "https://mas.owasp.org/MASTG/",
+          "https://developer.android.com/tools/adb",
+          "https://github.com/budtmo/docker-android"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "mob-s1-b1",
+          "start": "09:00",
+          "end": "09:30",
+          "duration": 30,
+          "title": "Introducción al módulo Mobile Hacking",
+          "type": "opening",
+          "icon": "BookOpen",
+          "tool": null,
+          "description": "Presentación del módulo, objetivos de aprendizaje, metodología OWASP MASTG y arquitectura del entorno Docker.",
+          "keyActions": [
+            "Revisar el ROADMAP del módulo",
+            "Entender la arquitectura android + mobsf + mobile-tools",
+            "Verificar requisitos: Docker Desktop, 4GB RAM disponibles"
+          ],
+          "speakerNote": "Hacer énfasis en el entorno 100% dockerizado — no se necesita Android Studio ni dispositivo físico."
+        },
+        {
+          "id": "mob-s1-b2",
+          "start": "09:30",
+          "end": "10:30",
+          "duration": 60,
+          "title": "Levantar el entorno Docker",
+          "type": "activity",
+          "icon": "Container",
+          "tool": {
+            "name": "setup.sh",
+            "url": null,
+            "setup": "cd labs/mobile && ./containers/mobile/scripts/setup.sh",
+            "timeline": [
+              { "time": "09:30", "action": "Ejecutar setup.sh" },
+              { "time": "09:35", "action": "Esperar build de imágenes (~5 min)" },
+              { "time": "09:45", "action": "Verificar emulador en http://localhost:6080" },
+              { "time": "10:00", "action": "Verificar MobSF en http://localhost:8000" },
+              { "time": "10:15", "action": "Entrar a mobile-tools: docker exec -it mobile-tools bash" }
+            ]
+          },
+          "description": "Construcción y arranque del entorno completo: emulador Android 11, MobSF y container de herramientas.",
+          "keyActions": [
+            "Ejecutar ./containers/mobile/scripts/setup.sh",
+            "Confirmar los 3 servicios levantados",
+            "Conectar ADB: adb connect localhost:5555"
+          ],
+          "speakerNote": "El emulador tarda ~2 minutos. Mientras arranca, explicar la arquitectura de red interna Docker."
+        },
+        {
+          "id": "mob-s1-b3",
+          "start": "10:30",
+          "end": "11:30",
+          "duration": 60,
+          "title": "ADB — Comandos esenciales",
+          "type": "activity",
+          "icon": "Terminal",
+          "tool": {
+            "name": "adb",
+            "url": "https://developer.android.com/tools/adb",
+            "setup": "adb connect localhost:5555",
+            "timeline": [
+              { "time": "10:30", "action": "Conectar ADB y verificar dispositivo" },
+              { "time": "10:45", "action": "Explorar filesystem con adb shell" },
+              { "time": "11:00", "action": "Instalar APKs vulnerables" },
+              { "time": "11:15", "action": "Capturar logcat de DIVA" }
+            ]
+          },
+          "description": "Uso de Android Debug Bridge para interactuar con el emulador: shell, transferencia de archivos, instalación de APKs y monitoreo de logs.",
+          "keyActions": [
+            "adb devices — verificar conexión",
+            "adb shell — explorar el sistema",
+            "adb install — instalar DIVA e InsecureShop",
+            "adb logcat — capturar logs"
+          ],
+          "speakerNote": "Referencia: labs/mobile/lab01-adb-basics/README.md"
+        },
+        {
+          "id": "mob-s1-b4",
+          "start": "11:30",
+          "end": "12:00",
+          "duration": 30,
+          "title": "Cierre y preparación Lab 02",
+          "type": "closing",
+          "icon": "CheckCircle",
+          "tool": null,
+          "description": "Revisión de lo aprendido, Q&A y preparación para el siguiente lab de reversión de APKs.",
+          "keyActions": [
+            "Confirmar emulador operativo con las 2 apps instaladas",
+            "Revisar los 5 ejercicios del lab01",
+            "Instalar jadx previamente si se usa localmente"
+          ],
+          "speakerNote": "Dejar el entorno Docker corriendo para la siguiente sesión."
+        }
+      ],
+      "readings": {
+        "assigned": [
+          {
+            "title": "OWASP MASTG — Testing Environment Setup",
+            "author": "OWASP",
+            "url": "https://mas.owasp.org/MASTG/tools/android/MASTG-TOOL-0004/",
+            "pages": "Sección: Android Testing Environment"
+          },
+          {
+            "title": "budtmo/docker-android — Documentación oficial",
+            "author": "budtmo",
+            "url": "https://github.com/budtmo/docker-android",
+            "pages": "README completo"
+          }
+        ],
+        "toAssign": [
+          {
+            "title": "ADB Developers Reference",
+            "author": "Android Developers",
+            "url": "https://developer.android.com/tools/adb",
+            "pages": "Comandos principales"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mob-s2",
+      "number": 2,
+      "date": "2026-07-12",
+      "dateLabel": "Sábado 12 Jul",
+      "title": "APK Reversing con jadx y apktool",
+      "shortTitle": "APK Reversing",
+      "rectora": "Análisis estático de aplicaciones Android",
+      "color": "#805AD5",
+      "colorLight": "#E9D8FD",
+      "icon": "Code2",
+      "status": "upcoming",
+      "expertConference": null,
+      "pitch": {
+        "headline": "El código fuente está en el APK — solo hay que saber buscarlo",
+        "subheadline": "Análisis estático sin acceso al repositorio original",
+        "openingHook": "Un APK es un archivo ZIP. Dentro hay bytecode Dalvik que jadx puede convertir de vuelta a Java legible en segundos.",
+        "keyCases": [
+          {
+            "entity": "Banco regional LATAM",
+            "year": 2022,
+            "fact": "API key de producción hardcodeada en el APK de banca móvil, expuesta en strings.xml",
+            "source": "OWASP Mobile Top 10 — M9: Insecure Data Storage"
+          }
+        ],
+        "keyStats": [
+          { "value": "68%", "label": "Apps móviles contienen secretos hardcodeados (API keys, contraseñas)", "source": "GitGuardian 2024" },
+          { "value": "M9", "label": "OWASP Mobile Top 10 — Insecure Data Storage, incluye secretos en código", "source": "OWASP 2024" }
+        ],
+        "reflectionQuestion": "¿Qué tipo de información sensible esperarías encontrar al decompilar la app de tu banco?",
+        "references": [
+          "https://github.com/skylot/jadx",
+          "https://github.com/iBotPeaches/Apktool",
+          "https://github.com/MobSF/Mobile-Security-Framework-MobSF"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "mob-s2-b1",
+          "start": "09:00",
+          "end": "10:30",
+          "duration": 90,
+          "title": "MobSF — Análisis estático automatizado",
+          "type": "activity",
+          "icon": "Shield",
+          "tool": {
+            "name": "MobSF",
+            "url": "http://localhost:8000",
+            "setup": "Abrir http://localhost:8000 y arrastrar InsecureShop.apk",
+            "timeline": [
+              { "time": "09:00", "action": "Subir InsecureShop.apk a MobSF" },
+              { "time": "09:10", "action": "Revisar Security Score y permisos" },
+              { "time": "09:30", "action": "Buscar hardcoded secrets" },
+              { "time": "09:50", "action": "Revisar exported components" },
+              { "time": "10:10", "action": "Subir DIVA y comparar reportes" }
+            ]
+          },
+          "description": "Uso de MobSF para análisis estático automatizado: permisos, secretos hardcodeados, componentes exportados y vulnerabilidades conocidas.",
+          "keyActions": [
+            "Analizar InsecureShop.apk con MobSF",
+            "Identificar al menos 3 hallazgos críticos",
+            "Comparar Security Score de DIVA vs InsecureShop"
+          ],
+          "speakerNote": "Referencia: labs/mobile/lab02-apk-reversing/README.md — sección MobSF"
+        },
+        {
+          "id": "mob-s2-b2",
+          "start": "10:30",
+          "end": "12:00",
+          "duration": 90,
+          "title": "jadx y apktool — Reversión manual",
+          "type": "activity",
+          "icon": "Code2",
+          "tool": {
+            "name": "jadx + apktool",
+            "url": null,
+            "setup": "docker exec -it mobile-tools bash",
+            "timeline": [
+              { "time": "10:30", "action": "jadx -d decomp/ InsecureShop.apk" },
+              { "time": "10:50", "action": "Buscar credenciales con grep" },
+              { "time": "11:10", "action": "apktool d InsecureShop.apk — ver smali" },
+              { "time": "11:30", "action": "Extraer endpoints de la API" },
+              { "time": "11:45", "action": "Reempaquetar APK modificado" }
+            ]
+          },
+          "description": "Decompilación manual con jadx (Java) y apktool (Smali). Búsqueda de credenciales, endpoints y lógica de autenticación en el código fuente.",
+          "keyActions": [
+            "jadx -d /workspace/shop-decomp /apks/InsecureShop/InsecureShop.apk",
+            "grep -rn 'password\\|secret\\|api_key' --include='*.java'",
+            "grep -rEo '\"https?://[^\"]*\"' | sort -u"
+          ],
+          "speakerNote": "El objetivo es encontrar las credenciales hardcodeadas y la URL del API backend."
+        }
+      ],
+      "readings": {
+        "assigned": [
+          {
+            "title": "OWASP MASTG — Static Analysis",
+            "author": "OWASP",
+            "url": "https://mas.owasp.org/MASTG/techniques/android/MASTG-TECH-0014/",
+            "pages": "Sección completa de static analysis"
+          }
+        ],
+        "toAssign": [
+          {
+            "title": "jadx — Android decompiler wiki",
+            "author": "skylot",
+            "url": "https://github.com/skylot/jadx/wiki",
+            "pages": "Usage guide"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mob-s3",
+      "number": 3,
+      "date": "2026-07-19",
+      "dateLabel": "Sábado 19 Jul",
+      "title": "Interceptación de tráfico con Burp y mitmproxy",
+      "shortTitle": "Proxy & Interceptación",
+      "rectora": "Análisis dinámico — tráfico de red",
+      "color": "#805AD5",
+      "colorLight": "#E9D8FD",
+      "icon": "Wifi",
+      "status": "upcoming",
+      "expertConference": null,
+      "pitch": {
+        "headline": "Todo pasa por el proxy — si sabes dónde mirar",
+        "subheadline": "Interceptar, modificar y repetir peticiones móviles",
+        "openingHook": "El 90% de las vulnerabilidades de APIs móviles se descubren interceptando el tráfico HTTPS. El proxy es la herramienta más poderosa del pentester mobile.",
+        "keyCases": [
+          {
+            "entity": "App fintech LATAM",
+            "year": 2023,
+            "fact": "IDOR en API móvil: cambiar el userId en la respuesta del login daba acceso a cualquier cuenta",
+            "source": "Bug Bounty disclosure — HackerOne"
+          }
+        ],
+        "keyStats": [
+          { "value": "A4", "label": "OWASP API Top 10 — Broken Object Level Authorization (IDOR) es el #1 en APIs móviles", "source": "OWASP 2023" },
+          { "value": "47%", "label": "De las vulnerabilidades móviles involucran comunicación insegura con el servidor", "source": "NowSecure 2024" }
+        ],
+        "reflectionQuestion": "¿Qué pasaría si pudieras modificar el campo 'role' en la respuesta de autenticación de tu app bancaria?",
+        "references": [
+          "https://portswigger.net/burp",
+          "https://mitmproxy.org/",
+          "https://mas.owasp.org/MASTG/techniques/android/MASTG-TECH-0010/"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "mob-s3-b1",
+          "start": "09:00",
+          "end": "11:00",
+          "duration": 120,
+          "title": "Configurar proxy e interceptar tráfico HTTPS",
+          "type": "activity",
+          "icon": "Wifi",
+          "tool": {
+            "name": "mitmproxy / Burp Suite",
+            "url": "http://localhost:8081",
+            "setup": "docker exec -it mobile-tools bash && mitmweb --listen-host 0.0.0.0 --listen-port 8080 --web-port 8081",
+            "timeline": [
+              { "time": "09:00", "action": "Levantar mitmproxy en mobile-tools" },
+              { "time": "09:15", "action": "Configurar proxy en el emulador" },
+              { "time": "09:30", "action": "Instalar certificado CA del proxy" },
+              { "time": "10:00", "action": "Interceptar login de InsecureShop" },
+              { "time": "10:30", "action": "Probar IDOR modificando respuestas" }
+            ]
+          },
+          "description": "Configuración del proxy en el emulador Android dockerizado, instalación del certificado CA y análisis del tráfico HTTPS de InsecureShop.",
+          "keyActions": [
+            "Levantar mitmweb en el container mobile-tools",
+            "Configurar proxy en emulador: adb shell settings put global http_proxy 10.0.2.2:8080",
+            "Instalar certificado como CA del sistema",
+            "Interceptar y modificar la petición de login"
+          ],
+          "speakerNote": "Referencia: labs/mobile/lab03-burp-mobile/README.md — proceso completo con comandos."
+        }
+      ],
+      "readings": {
+        "assigned": [
+          {
+            "title": "OWASP MASTG — Intercepting Network Traffic",
+            "author": "OWASP",
+            "url": "https://mas.owasp.org/MASTG/techniques/android/MASTG-TECH-0010/",
+            "pages": "Sección completa"
+          }
+        ],
+        "toAssign": []
+      }
+    },
+    {
+      "id": "mob-s4",
+      "number": 4,
+      "date": "2026-07-26",
+      "dateLabel": "Sábado 26 Jul",
+      "title": "Frida & Objection — Instrumentación dinámica",
+      "shortTitle": "Frida & Objection",
+      "rectora": "Hooking y análisis en tiempo de ejecución",
+      "color": "#805AD5",
+      "colorLight": "#E9D8FD",
+      "icon": "Zap",
+      "status": "upcoming",
+      "expertConference": null,
+      "pitch": {
+        "headline": "Inyectar código en una app en ejecución sin tocar el APK",
+        "subheadline": "Frida: el bisturí del pentester mobile",
+        "openingHook": "Frida te permite hookear cualquier método Java en tiempo de ejecución, leer SharedPreferences, volcar bases de datos SQLite y deshabilitar controles de seguridad — todo sin modificar el APK.",
+        "keyCases": [
+          {
+            "entity": "App bancaria iOS/Android",
+            "year": 2024,
+            "fact": "Investigadores usaron Frida para extraer claves de cifrado AES de la memoria en tiempo de ejecución",
+            "source": "Black Hat 2024 — Mobile Banking Security"
+          }
+        ],
+        "keyStats": [
+          { "value": "M8", "label": "OWASP Mobile Top 10 — Security Misconfiguration, incluye falta de detección de instrumentación", "source": "OWASP 2024" },
+          { "value": "95%", "label": "Apps bancarias sin detección de Frida en entornos de prueba", "source": "NowSecure 2024" }
+        ],
+        "reflectionQuestion": "¿Qué información confidencial podría extraer Frida de la app de pagos que usas a diario?",
+        "references": [
+          "https://frida.re/docs/",
+          "https://github.com/sensepost/objection",
+          "https://mas.owasp.org/MASTG/techniques/android/MASTG-TECH-0043/"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "mob-s4-b1",
+          "start": "09:00",
+          "end": "10:30",
+          "duration": 90,
+          "title": "Frida — Setup y primer hook",
+          "type": "activity",
+          "icon": "Zap",
+          "tool": {
+            "name": "frida-tools",
+            "url": null,
+            "setup": "./containers/mobile/scripts/frida-push.sh",
+            "timeline": [
+              { "time": "09:00", "action": "Ejecutar frida-push.sh" },
+              { "time": "09:15", "action": "Verificar frida-ps -H localhost:5555" },
+              { "time": "09:30", "action": "Hookear método de login con frida" },
+              { "time": "10:00", "action": "Leer SharedPreferences con script" }
+            ]
+          },
+          "description": "Instalación de frida-server en el emulador y primeros scripts de hooking: interceptar el método login, leer almacenamiento SharedPreferences.",
+          "keyActions": [
+            "Ejecutar frida-push.sh para instalar frida-server",
+            "frida-ps -H localhost:5555 — listar procesos",
+            "Hookear LoginActivity.login con --dump-args --dump-return"
+          ],
+          "speakerNote": "Referencia: labs/mobile/lab04-frida-basics/README.md"
+        },
+        {
+          "id": "mob-s4-b2",
+          "start": "10:30",
+          "end": "12:00",
+          "duration": 90,
+          "title": "Objection — Exploración interactiva",
+          "type": "activity",
+          "icon": "Terminal",
+          "tool": {
+            "name": "objection",
+            "url": null,
+            "setup": "objection -N -h mobile-android -p 5555 -g com.shop.insecureshop explore",
+            "timeline": [
+              { "time": "10:30", "action": "Conectar objection a InsecureShop" },
+              { "time": "10:45", "action": "Volcar SharedPreferences" },
+              { "time": "11:00", "action": "Leer base de datos SQLite" },
+              { "time": "11:20", "action": "Intentar ssl pinning disable" },
+              { "time": "11:40", "action": "Hookear actividad actual" }
+            ]
+          },
+          "description": "Uso de Objection para exploración interactiva: SharedPreferences, SQLite, actividad actual y bypass de controles de seguridad.",
+          "keyActions": [
+            "android sharedpreferences get",
+            "sqlite connect .../insecureshop.db",
+            "android sslpinning disable",
+            "android hooking get current_activity"
+          ],
+          "speakerNote": "Objection es una capa sobre Frida con comandos prebuilt para tareas comunes de pentesting."
+        }
+      ],
+      "readings": {
+        "assigned": [
+          {
+            "title": "Frida Documentation — JavaScript API",
+            "author": "frida.re",
+            "url": "https://frida.re/docs/javascript-api/",
+            "pages": "Java module"
+          }
+        ],
+        "toAssign": []
+      }
+    },
+    {
+      "id": "mob-s5",
+      "number": 5,
+      "date": "2026-08-02",
+      "dateLabel": "Sábado 2 Ago",
+      "title": "API Testing Mobile",
+      "shortTitle": "API Testing",
+      "rectora": "Pruebas de seguridad en APIs móviles",
+      "color": "#805AD5",
+      "colorLight": "#E9D8FD",
+      "icon": "Globe",
+      "status": "upcoming",
+      "expertConference": null,
+      "pitch": {
+        "headline": "La app es solo la interfaz — el backend es el objetivo real",
+        "subheadline": "OWASP API Top 10 aplicado a móviles",
+        "openingHook": "El 80% de la lógica de negocio vive en el API backend. La app móvil es solo la puerta de entrada.",
+        "keyCases": [
+          {
+            "entity": "Peloton",
+            "year": 2021,
+            "fact": "API sin autenticación exponía datos de todos los usuarios — accesible desde la app móvil sin estar logueado",
+            "source": "Jan Masters — Security Research"
+          }
+        ],
+        "keyStats": [
+          { "value": "#1", "label": "OWASP API Top 10 — Broken Object Level Authorization es la vuln más común en APIs móviles", "source": "OWASP 2023" },
+          { "value": "83%", "label": "Apps fintech exponen endpoints API sin rate limiting", "source": "42Crunch 2024" }
+        ],
+        "reflectionQuestion": "¿Cómo verificarías que una API móvil implementa correctamente la autorización por objeto?",
+        "references": [
+          "https://owasp.org/www-project-api-security/",
+          "https://github.com/OWASP/wrongsecrets"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "mob-s5-b1",
+          "start": "09:00",
+          "end": "12:00",
+          "duration": 180,
+          "title": "OWASP API Top 10 en InsecureShop",
+          "type": "activity",
+          "icon": "Globe",
+          "tool": {
+            "name": "Burp Suite + curl + frida",
+            "url": null,
+            "setup": "Proxy activo + InsecureShop corriendo en emulador",
+            "timeline": [
+              { "time": "09:00", "action": "Mapear todos los endpoints del API" },
+              { "time": "09:30", "action": "Probar BOLA/IDOR en /api/user/{id}" },
+              { "time": "10:00", "action": "Probar Broken Authentication" },
+              { "time": "10:30", "action": "Mass Assignment — enviar campos extra" },
+              { "time": "11:00", "action": "Rate limiting — brute force endpoints" },
+              { "time": "11:30", "action": "Documentar hallazgos en formato OWASP" }
+            ]
+          },
+          "description": "Pruebas sistemáticas de las vulnerabilidades OWASP API Top 10 en el backend de InsecureShop usando Burp, curl y Frida.",
+          "keyActions": [
+            "Extraer endpoints del APK con jadx",
+            "Probar IDOR: cambiar userId en peticiones autenticadas",
+            "Probar acceso sin token a endpoints protegidos",
+            "Documentar cada hallazgo con request/response"
+          ],
+          "speakerNote": "Referencia: labs/mobile/lab05-api-testing/README.md"
+        }
+      ],
+      "readings": {
+        "assigned": [
+          {
+            "title": "OWASP API Security Top 10 — 2023",
+            "author": "OWASP",
+            "url": "https://owasp.org/www-project-api-security/",
+            "pages": "API1 a API5"
+          }
+        ],
+        "toAssign": []
+      }
+    },
+    {
+      "id": "mob-s6",
+      "number": 6,
+      "date": "2026-08-09",
+      "dateLabel": "Sábado 9 Ago",
+      "title": "SSL Pinning Bypass",
+      "shortTitle": "SSL Pinning Bypass",
+      "rectora": "Evasión de controles criptográficos",
+      "color": "#805AD5",
+      "colorLight": "#E9D8FD",
+      "icon": "ShieldOff",
+      "status": "upcoming",
+      "expertConference": null,
+      "pitch": {
+        "headline": "SSL Pinning: la última línea de defensa — y cómo superarla",
+        "subheadline": "Frida vs. certificate pinning en producción",
+        "openingHook": "SSL Pinning debería impedir la interceptación del tráfico. Con Frida, se deshabilita en segundos. El 60% de las apps con pinning son vulnerables a bypass dinámico.",
+        "keyCases": [
+          {
+            "entity": "App bancaria Colombia",
+            "year": 2023,
+            "fact": "SSL pinning bypasseado con script Frida universal — tráfico HTTPS completamente visible al atacante en la misma red",
+            "source": "Investigación interna CERT Académico"
+          }
+        ],
+        "keyStats": [
+          { "value": "60%", "label": "Apps con SSL Pinning son vulnerables a bypass dinámico con Frida", "source": "NowSecure 2024" },
+          { "value": "M3", "label": "OWASP Mobile Top 10 — Insecure Communication", "source": "OWASP 2024" }
+        ],
+        "reflectionQuestion": "Si el SSL Pinning puede bypassearse con un script de 20 líneas, ¿qué defensa realmente protege el canal de comunicación?",
+        "references": [
+          "https://frida.re/",
+          "https://mas.owasp.org/MASTG/techniques/android/MASTG-TECH-0012/",
+          "https://github.com/sensepost/objection"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "mob-s6-b1",
+          "start": "09:00",
+          "end": "10:30",
+          "duration": 90,
+          "title": "Detectar y analizar SSL Pinning",
+          "type": "activity",
+          "icon": "Lock",
+          "tool": {
+            "name": "jadx + MobSF",
+            "url": null,
+            "setup": "jadx -d decomp/ app.apk && grep -rn 'CertificatePinner\\|TrustManager' decomp/",
+            "timeline": [
+              { "time": "09:00", "action": "Identificar implementación de pinning con jadx" },
+              { "time": "09:30", "action": "Confirmar que proxy no intercepta tráfico" },
+              { "time": "10:00", "action": "Intentar bypass con objection sslpinning disable" }
+            ]
+          },
+          "description": "Detección de SSL Pinning en el código fuente y verificación de que el proxy no puede interceptar tráfico sin bypass.",
+          "keyActions": [
+            "Buscar CertificatePinner, TrustManager, OkHttp en el código",
+            "Confirmar que el proxy no intercepta sin bypass",
+            "Probar android sslpinning disable en objection"
+          ],
+          "speakerNote": "Referencia: labs/mobile/lab06-ssl-pinning/README.md"
+        },
+        {
+          "id": "mob-s6-b2",
+          "start": "10:30",
+          "end": "12:00",
+          "duration": 90,
+          "title": "Bypass con Frida — Script universal",
+          "type": "activity",
+          "icon": "ShieldOff",
+          "tool": {
+            "name": "frida + ssl-bypass.js",
+            "url": null,
+            "setup": "frida -H localhost:5555 -f com.app.target --no-pause -l ssl-bypass.js",
+            "timeline": [
+              { "time": "10:30", "action": "Implementar script ssl-bypass.js" },
+              { "time": "10:50", "action": "Ejecutar con frida contra el objetivo" },
+              { "time": "11:10", "action": "Verificar tráfico en proxy" },
+              { "time": "11:30", "action": "Bypass con apktool (network_security_config)" }
+            ]
+          },
+          "description": "Implementación del script universal de bypass (TrustManager + OkHttp CertificatePinner) y método alternativo via network_security_config.xml.",
+          "keyActions": [
+            "Implementar TrustManager bypass en JavaScript",
+            "Añadir hook para okhttp3.CertificatePinner",
+            "Verificar tráfico HTTPS visible en proxy",
+            "Método apktool: modificar network_security_config.xml"
+          ],
+          "speakerNote": "El script completo está en el README del lab06 — hacer live coding con los participantes."
+        },
+        {
+          "id": "mob-s6-b3",
+          "start": "12:00",
+          "end": "12:30",
+          "duration": 30,
+          "title": "Cierre del módulo — Recap y recomendaciones defensivas",
+          "type": "closing",
+          "icon": "CheckCircle",
+          "tool": null,
+          "description": "Revisión de los 6 labs, recomendaciones defensivas (Certificate Transparency, Root Detection, RASP) y próximos pasos.",
+          "keyActions": [
+            "Recap de los 6 labs y técnicas cubiertas",
+            "OWASP MASTG checklist de controles defensivos",
+            "Recursos para continuar: Frida CodeShare, MASTG"
+          ],
+          "speakerNote": "Enfatizar: SSL Pinning es una capa más, no la única defensa. Certificate Transparency + Root/Emulator Detection + RASP como complementos."
+        }
+      ],
+      "readings": {
+        "assigned": [
+          {
+            "title": "OWASP MASTG — Testing Network Communication",
+            "author": "OWASP",
+            "url": "https://mas.owasp.org/MASTG/tests/android/MASVS-NETWORK/MASTG-TEST-0021/",
+            "pages": "SSL Pinning tests"
+          }
+        ],
+        "toAssign": [
+          {
+            "title": "Frida CodeShare — SSL Pinning bypasses",
+            "author": "Frida Community",
+            "url": "https://codeshare.frida.re/@pcipolloni/universal-android-ssl-pinning-bypass-with-frida/",
+            "pages": "Script completo y variantes"
+          }
+        ]
+      }
+    }
+  ]
+}

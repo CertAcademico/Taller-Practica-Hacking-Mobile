@@ -31,14 +31,14 @@
       "color": "#805AD5",
       "colorLight": "#E9D8FD",
       "icon": "Smartphone",
-      "status": "coming-soon",
-      "instructor": "Por confirmar",
+      "status": "active",
+      "instructor": "Emanuel Ortiz R.",
       "institution": "CERT Académico – LabThinkTank",
       "cohort": "Q3 2026",
-      "totalSessions": 4,
-      "totalHours": 16,
-      "tags": ["Android", "iOS", "Frida", "MobSF", "ADB", "SSL Pinning", "OWASP Mobile"],
-      "sessionsRef": null
+      "totalSessions": 6,
+      "totalHours": 18,
+      "tags": ["Android", "Frida", "MobSF", "ADB", "SSL Pinning", "OWASP Mobile", "DIVA", "InsecureShop"],
+      "sessionsRef": "mobile-security"
     },
     {
       "id": "threat-intelligence-2026",
