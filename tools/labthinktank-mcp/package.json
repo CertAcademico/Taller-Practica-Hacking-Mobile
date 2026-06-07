@@ -1,0 +1,19 @@
+{
+  "name": "labthinktank-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for LabThinkTank.io — Cybersecurity Research & Pentesting Framework",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
