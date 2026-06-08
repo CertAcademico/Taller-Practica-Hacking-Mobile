@@ -2,7 +2,7 @@ import { useState } from "react"
 import {
   Terminal, Wifi, Code2, Smartphone, Target, Boxes, Globe, Search, Network, Cloud,
   GraduationCap, ChevronLeft, Copy, Check, ExternalLink,
-  Container, Play, type LucideIcon,
+  Container, Play, Layers, ShieldCheck, type LucideIcon,
 } from "lucide-react"
 import { useStore } from "@/store/useStore"
 
@@ -29,8 +29,18 @@ interface LabModule {
   tools: string[]
   path: string
   quickStart: string
+  deployCommand?: string
   docker?: DockerService[]
   labCount?: number
+}
+
+interface DeploymentScenario {
+  id: string
+  title: string
+  objective: string
+  labIds: string[]
+  readiness: "ready" | "manual" | "planned"
+  command: string
 }
 
 const LABS: LabModule[] = [
@@ -88,6 +98,7 @@ const LABS: LabModule[] = [
     tools: ["jadx", "apktool", "frida", "objection", "mitmproxy", "MobSF", "adb"],
     path: "labs/mobile/",
     quickStart: "cd labs/mobile && ./containers/mobile/scripts/setup.sh",
+    deployCommand: "docker compose -f labs/mobile/containers/mobile/docker-compose.yml up -d",
     labCount: 6,
     docker: [
       { name: "Android (noVNC)", url: "http://localhost:6080", description: "Emulador Android 11" },
@@ -107,6 +118,7 @@ const LABS: LabModule[] = [
     tools: ["aws-cli", "Pacu", "CloudFox", "Checkov", "truffleHog", "ScoutSuite", "kubectl"],
     path: "labs/cloud/",
     quickStart: "cd labs/cloud && ./containers/setup.sh",
+    deployCommand: "docker compose -f labs/cloud/containers/docker-compose.yml up -d",
     labCount: 6,
     docker: [
       { name: "LocalStack",  url: "http://localhost:4566", description: "AWS simulado — S3, IAM, Secrets, SSM" },
@@ -126,6 +138,7 @@ const LABS: LabModule[] = [
     tools: ["impacket", "NetExec", "BloodHound", "Kerbrute", "Responder", "evil-winrm"],
     path: "labs/ad/",
     quickStart: "cd labs/ad && ./containers/setup.sh",
+    deployCommand: "docker compose -f labs/ad/containers/docker-compose.yml up -d",
     labCount: 6,
     docker: [
       { name: "DC01 (Samba AD)", url: "ldap://192.168.100.10", description: "LABTHINKTANK.LOCAL — LDAP:389 SMB:445 Kerberos:88" },
@@ -145,6 +158,7 @@ const LABS: LabModule[] = [
     tools: ["subfinder", "amass", "theHarvester", "httpx", "nuclei", "shodan", "SpiderFoot"],
     path: "labs/osint/",
     quickStart: "cd labs/osint && ./containers/setup.sh",
+    deployCommand: "docker compose -f labs/osint/containers/docker-compose.yml up -d",
     labCount: 5,
     docker: [
       { name: "SpiderFoot", url: "http://localhost:5009", description: "OSINT automatizado con 200+ módulos" },
@@ -162,6 +176,7 @@ const LABS: LabModule[] = [
     tools: ["burpsuite", "sqlmap", "gobuster", "nikto", "DVWA", "Juice Shop", "WebGoat"],
     path: "labs/web/",
     quickStart: "cd labs/web && ./containers/setup.sh",
+    deployCommand: "docker compose -f labs/web/containers/docker-compose.yml up -d",
     labCount: 6,
     docker: [
       { name: "DVWA",       url: "http://localhost:8080", description: "PHP/MySQL — SQLi, XSS, File Upload, CMDi" },
@@ -212,6 +227,49 @@ const DIFFICULTY_COLOR: Record<LabDifficulty, string> = {
   "Varios":       "#805AD5",
 }
 
+const DEPLOYMENT_SCENARIOS: DeploymentScenario[] = [
+  {
+    id: "web-owasp",
+    title: "Web OWASP Range",
+    objective: "Levantar DVWA, Juice Shop y WebGoat para SQLi, XSS, IDOR, SSRF y carga de archivos.",
+    labIds: ["web"],
+    readiness: "ready",
+    command: "docker compose -f labs/web/containers/docker-compose.yml up -d",
+  },
+  {
+    id: "mobile-analysis",
+    title: "Mobile Analysis Bench",
+    objective: "Preparar Android, MobSF y proxy para reversión de APK, Frida, APIs móviles y SSL Pinning.",
+    labIds: ["mobile"],
+    readiness: "ready",
+    command: "docker compose -f labs/mobile/containers/mobile/docker-compose.yml up -d",
+  },
+  {
+    id: "cloud-attack-path",
+    title: "Cloud Attack Path",
+    objective: "Desplegar LocalStack, SSRF App e IMDS mock para S3, IAM privesc, SSRF e IaC scanning.",
+    labIds: ["cloud"],
+    readiness: "ready",
+    command: "docker compose -f labs/cloud/containers/docker-compose.yml up -d",
+  },
+  {
+    id: "enterprise-ad",
+    title: "Enterprise AD Lab",
+    objective: "Iniciar Samba AD, BloodHound CE y Neo4j para enumeración, Kerberoasting, DCSync y movimiento lateral.",
+    labIds: ["active-directory"],
+    readiness: "ready",
+    command: "docker compose -f labs/ad/containers/docker-compose.yml up -d",
+  },
+  {
+    id: "recon-osint",
+    title: "Recon & OSINT Desk",
+    objective: "Activar SpiderFoot y pipelines de reconocimiento para subdominios, DNS, HTTP probing y reporting.",
+    labIds: ["osint", "redes", "bash-scripting"],
+    readiness: "manual",
+    command: "cd labs/osint && ./containers/setup.sh",
+  },
+]
+
 // ─── Copy button ──────────────────────────────────────────────────────────────
 
 function CopyButton({ text }: { text: string }) {
@@ -232,6 +290,103 @@ function CopyButton({ text }: { text: string }) {
     >
       {copied ? <Check size={13} className="text-green-400" /> : <Copy size={13} />}
     </button>
+  )
+}
+
+// ─── Deployment Dashboard ────────────────────────────────────────────────────
+
+function DeploymentDashboard({
+  onSelectLab,
+}: {
+  onSelectLab: (id: string) => void
+}) {
+  const dockerLabs = LABS.filter((lab) => lab.deployCommand)
+  const serviceCount = dockerLabs.reduce((acc, lab) => acc + (lab.docker?.length ?? 0), 0)
+
+  return (
+    <section className="space-y-5">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <Layers size={16} className="text-blue-400" />
+          <h2 className="font-semibold text-slate-200">Dashboard de despliegue</h2>
+        </div>
+        <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500">
+          <span className="px-2 py-1 rounded-lg bg-elevated border border-slate-700/60">{dockerLabs.length} stacks</span>
+          <span className="px-2 py-1 rounded-lg bg-elevated border border-slate-700/60">{serviceCount} servicios</span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {DEPLOYMENT_SCENARIOS.map((scenario) => {
+          const labs = scenario.labIds
+            .map((id) => LABS.find((lab) => lab.id === id))
+            .filter((lab): lab is LabModule => Boolean(lab))
+          const primaryLab = labs[0]
+          const ready = scenario.readiness === "ready"
+
+          return (
+            <div
+              key={scenario.id}
+              className="rounded-2xl border border-slate-700/60 bg-surface overflow-hidden"
+            >
+              <div className="p-5 space-y-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <ShieldCheck size={15} className={ready ? "text-green-400" : "text-yellow-400"} />
+                      <h3 className="font-semibold text-slate-100">{scenario.title}</h3>
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">{scenario.objective}</p>
+                  </div>
+                  <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${
+                    ready
+                      ? "bg-green-900/50 text-green-300 border-green-700/40"
+                      : "bg-yellow-900/50 text-yellow-300 border-yellow-700/40"
+                  }`}>
+                    {ready ? "Listo" : "Manual"}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {labs.map((lab) => (
+                    <button
+                      key={lab.id}
+                      onClick={() => onSelectLab(lab.id)}
+                      className="text-xs px-2 py-1 rounded-lg bg-elevated text-slate-300 border border-slate-700/50 hover:border-slate-500 transition-colors"
+                    >
+                      {lab.shortTitle}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-2 bg-base rounded-lg px-3 py-2.5 border border-slate-700/50 font-mono text-xs text-green-300">
+                  <span className="text-slate-600 select-none">$</span>
+                  <span className="flex-1 break-all">{scenario.command}</span>
+                  <CopyButton text={scenario.command} />
+                </div>
+
+                {primaryLab?.docker && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {primaryLab.docker.slice(0, 4).map((svc) => (
+                      <a
+                        key={svc.name}
+                        href={svc.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between gap-2 rounded-lg bg-elevated px-3 py-2 border border-slate-700/50 hover:border-slate-500 transition-colors"
+                      >
+                        <span className="text-xs text-slate-300 truncate">{svc.name}</span>
+                        <ExternalLink size={11} className="text-slate-500 flex-shrink-0" />
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </section>
   )
 }
 
@@ -366,7 +521,7 @@ function LabDetail({ lab, onClose }: { lab: LabModule; onClose: () => void }) {
         </div>
 
         {/* Docker services */}
-        {lab.docker && (
+        {lab.docker && lab.deployCommand && (
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Container size={14} className="text-slate-400" />
@@ -398,8 +553,8 @@ function LabDetail({ lab, onClose }: { lab: LabModule; onClose: () => void }) {
                 <p className="text-xs text-slate-500 mb-1.5 font-semibold">Levantar entorno</p>
                 <div className="flex items-center gap-2 font-mono text-xs text-green-300">
                   <span className="text-slate-600 select-none">$</span>
-                  <span className="flex-1">docker compose -f labs/mobile/containers/mobile/docker-compose.yml up -d</span>
-                  <CopyButton text="docker compose -f labs/mobile/containers/mobile/docker-compose.yml up -d" />
+                  <span className="flex-1 break-all">{lab.deployCommand}</span>
+                  <CopyButton text={lab.deployCommand} />
                 </div>
               </div>
             </div>
@@ -435,7 +590,7 @@ export default function Labs() {
   return (
     <div className="min-h-screen bg-base text-slate-100">
       {/* Nav */}
-      <header className="border-b border-slate-700/60 bg-surface/80 backdrop-blur sticky top-0 z-20">
+      <header className="border-b border-slate-700/60 bg-surface sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
@@ -485,6 +640,8 @@ export default function Labs() {
         {expanded && (
           <LabDetail lab={expanded} onClose={() => setExpandedId(null)} />
         )}
+
+        <DeploymentDashboard onSelectLab={(id) => setExpandedId(id)} />
 
         {/* Available labs */}
         <section>

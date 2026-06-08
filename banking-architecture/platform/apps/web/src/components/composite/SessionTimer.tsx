@@ -29,7 +29,7 @@ export default function SessionTimer({ session }: Props) {
 
   return (
     <div
-      className="sticky top-0 z-30 flex items-center justify-between px-6 py-3 bg-surface/95 backdrop-blur border-b border-slate-700/60"
+      className="sticky top-0 z-30 flex items-center justify-between px-6 py-3 bg-surface border-b border-slate-700/60"
       style={{ borderTop: `3px solid ${session.color}` }}
     >
       <div className="flex items-center gap-3 min-w-0">

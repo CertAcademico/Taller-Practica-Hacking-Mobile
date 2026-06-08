@@ -72,8 +72,7 @@ export default function TimerRing({
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          className={pulse ? "animate-timer-pulse" : ""}
-          style={{ transition: "stroke-dashoffset 1s linear, stroke 0.3s" }}
+          style={{ transition: "stroke-dashoffset 1s linear, stroke 0.3s", willChange: "stroke-dashoffset" }}
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">

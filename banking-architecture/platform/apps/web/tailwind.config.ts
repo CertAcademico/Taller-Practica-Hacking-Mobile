@@ -24,8 +24,8 @@ const config: Config = {
           to: { transform: "translateX(0)", opacity: "1" },
         },
         "block-expand": {
-          from: { maxHeight: "0", opacity: "0" },
-          to: { maxHeight: "800px", opacity: "1" },
+          from: { opacity: "0", transform: "translateY(-6px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
         "glow-pulse": {
           "0%, 100%": { boxShadow: "0 0 8px currentColor" },

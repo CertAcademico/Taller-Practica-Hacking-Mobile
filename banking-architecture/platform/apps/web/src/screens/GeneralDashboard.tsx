@@ -339,7 +339,7 @@ export default function GeneralDashboard() {
     <div className="min-h-screen bg-base text-slate-100">
 
       {/* Top nav */}
-      <header className="border-b border-slate-700/60 bg-surface/80 backdrop-blur sticky top-0 z-20">
+      <header className="border-b border-slate-700/60 bg-surface sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
